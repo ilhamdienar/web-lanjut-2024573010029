@@ -25,6 +25,10 @@ class DemoController extends Controller
         $keyword = $request->query('q', 'none');
         return view('search', ['keyword' => $keyword]);
     }
-
-
 }
+
+
+
+
+
+

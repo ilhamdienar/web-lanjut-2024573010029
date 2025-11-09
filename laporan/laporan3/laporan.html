@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>laporan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laporan-modul-2-laravel-controller">Laporan Modul 2: Laravel Controller</h1>
+<p><strong>Mata Kuliah:</strong> Workshop Web Lanjut<br>
+<strong>Nama:</strong> Ilham Syahdienar<br>
+<strong>NIM:</strong> 2024573010029
+<strong>Kelas:</strong> TI-2C</p>
+<hr>
+<h2 id="abstrak">Abstrak</h2>
+<p>Laporan ini berisi pemahaman tentang controller pada laravel, yaitu bagian menerima permintaan dari rute, memproses input (tempat logic), dan mengembalikkan respons ke user.</p>
+<hr>
+<h2 id="1-dasar-teori">1. Dasar Teori</h2>
+<ul>
+<li>
+<p>Apa itu Controller?</p>
+<ul>
+<li>Controller adalah salah satu komponen inti dari MVC(Model, View, Controller) yang berfungsi sebagai penghubung antara user (View) ke model yang nantinya akan di kembalikan lagi ke View dalam bentuk response. Controller ini akan banyak berisi logika – logika dalam menyusun suatu fungsi tertentu. Contohnya adalah aktivitas CRUD (Create, Read, Update, Delete) yang prosesnya berjalan di dalam Controller.</li>
+<li>Perintah artisan untuk membuat controller yaitu
+<ul>
+<li><code>php artisan make:controller PageController</code></li>
+</ul>
+</li>
+<li>Untuk menggunakan Controller tersebut maka kita perlu mendaftarkannya di dalam file route:
+<ul>
+<li><code>use App\Http\Controllers\PageController;</code>
+<code>Route::get('/home', [PageController::class, 'home']);</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Jenis - jenis Controller</p>
+<ul>
+<li>Resource Controller
+<ul>
+<li>Resource dirancang berguna untuk jika ingin menggunakan operasi CRUD secara efisien, dimana laravel akan menyediakan metode bawaan seperti index, create, store, show, edit, update, dan destroy yang bisa langsung digunakan</li>
+</ul>
+</li>
+<li>Invokable Controller
+<ul>
+<li>Invokable controller cocok untuk tugas yang hanya membutuhkan satu metode, contohnya seperti menghitung total diskon atau mengirim email.</li>
+</ul>
+</li>
+<li>Nested Controller
+<ul>
+<li>Nested Controlller digunakan untuk mengelola relasi antar entitas, seperti review untuk setiap buah.</li>
+</ul>
+</li>
+<li>Custom Controller
+<ul>
+<li>Controller ini digunakan untuk kebutuhan khusus, seperti menampilkan penawaran spesial.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-langkah-langkah-praktikum">2. Langkah-Langkah Praktikum</h2>
+<ul>
+<li>2.1 Praktikum 1 - Menangani Request dan Response View di Laravel 12
+<ul>
+<li>
+<ol>
+<li>Buat project baru di dalam folder projects dengan nama lab-view, buat dengan perintah composer seperti ini:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel lab-view</code></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita buat controller di terminal/git bash, dengan nama controllernya adalah WelcomeController. Untuk membuat controller kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller WelcomeController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah itu buka file controller yang telah dibuat di app/http/controller/WelcomeController, lalu edit kode program di file tersebut seperti gambar dibawah ini:
+<img src="gambar/controller.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>selanjutnya kita akan mendefinisakn rute, dengan cara cari file web.php pada folder routes, lalu edit kode program di dalam file web.php seperti gambar di bawah ini:
+<img src="gambar/web.png" alt="kode-programC"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> kita akan membuat 3 file blade untuk view yang sederhana. beri nama file tersebut adalah:</li>
+</ol>
+<ul>
+<li>hello.blade.php</li>
+<li>greet.blade.php</li>
+<li>search.blade.php</li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li>selanjutnya kita akan mengedit atau menambahkan kode program di masing masing file blade.</li>
+</ol>
+</li>
+<li>
+<p>hello.blade.php
+<img src="gambar/hello.png" alt="kode-programC"></p>
+</li>
+<li>
+<p>greet.blade.php
+<img src="gambar/greet.png" alt="kode-programC"></p>
+</li>
+<li>
+<p>search.blade.php
+<img src="gambar/search.png" alt="kode-programC"></p>
+</li>
+<li>
+<ol start="7">
+<li>Setelah melakukan langkah 1 hingga 6, maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>.</li>
+</ol>
+</li>
+<li>
+<ol start="8">
+<li>Buka browser lalu ketik kunjungi url url ini</li>
+</ol>
+<ul>
+<li><code>http://127.0.0.1:8000/hello</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-hello.png" alt="tampilan localhost"></li>
+<li><code>http://127.0.0.1:8000/greet/ilham</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-greet.png" alt="tampilan localhost"></li>
+<li><code>http://127.0.0.1:8000/search?q=laravel</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-search.png" alt="tampilan localhost"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>2.2 Praktikum 2 – Menggunakan Group Route
+<ul>
+<li>
+<ol>
+<li>Buat project baru di dalam folder projects dengan nama lab-group, buat dengan perintah composer seperti ini:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel lab-group</code></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita buat controller di terminal/git bash, dengan nama controllernya adalah PageController. Untuk membuat controller kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller PageController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah itu buka file controller yang telah dibuat di app/http/controller/PageController, lalu edit kode program di file tersebut seperti gambar dibawah ini:
+<img src="gambar/prak2-controller.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>selanjutnya kita akan mendefinisakn rute yang dikelompokkan, dengan cara cari file web.php pada folder routes, lalu edit kode program di dalam file web.php seperti gambar di bawah ini:
+<img src="gambar/route-prak2.png" alt="kode-programC"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> buat folder baru bernama <code>pages</code> lalu kita akan membuat 3 file blade untuk view yang sederhana. beri nama file tersebut adalah:</li>
+</ol>
+<ul>
+<li>about.blade.php</li>
+<li>contact.blade.php</li>
+<li>home.blade.php</li>
+</ul>
+</li>
+<li>
+<ol start="6">
+<li>selanjutnya kita akan mengedit atau menambahkan kode program di masing masing file blade.</li>
+</ol>
+</li>
+<li>
+<p>about.blade.php
+<img src="gambar/about-prak2.png" alt="kode-programC"></p>
+</li>
+<li>
+<p>contact.blade.php
+<img src="gambar/contact-prak2.png" alt="kode-programC"></p>
+</li>
+<li>
+<p>home.blade.php
+<img src="gambar/home-prak2.png" alt="kode-programC"></p>
+</li>
+<li>
+<ol start="7">
+<li>Setelah melakukan langkah 1 hingga 6, maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>.</li>
+</ol>
+</li>
+<li>
+<ol start="8">
+<li>Buka browser lalu ketik kunjungi url url ini</li>
+</ol>
+<ul>
+<li><code>http://127.0.0.1:8000/</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-home.png" alt="tampilan localhost"></li>
+<li><code>http://127.0.0.1:8000/about</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-about.png" alt="tampilan localhost"></li>
+<li><code>http://127.0.0.1:8000/contact</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-contact.png" alt="tampilan localhost"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>2.3 Praktikum 3 – Pengelompokan Prefix dengan Namespace Rute di Laravel 12
+<ul>
+<li>
+<ol>
+<li>Buat project baru di dalam folder projects dengan nama lab-prefix, buat dengan perintah composer seperti ini:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel lab-prefix</code></li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita buat folder admin Ini akan membuat dua controller di direktori app/Http/Controllers/, dengan nama controllernya adalah UserController dan AdminController. Untuk membuat controllernya kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller Admin/UserController</code></li>
+<li><code>php artisan make:controller Admin/DashboardController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah itu buka file controller yang telah dibuat di <code>app/http/controller/Admin</code>, lalu edit kode program di file tersebut seperti gambar dibawah ini:</li>
+</ol>
+</li>
+<li>
+<p>UserController
+<img src="gambar/user-control-prak3.png" alt="kode-program"></p>
+</li>
+<li>
+<p>DashboardController
+<img src="gambar/dashboard-prak3.png" alt="kode-program"></p>
+</li>
+<li>
+<ol start="4">
+<li>selanjutnya kita akan mendefinisakn rute yang dikelompokkan dengan prefix dan namespace controller, dengan cara cari file web.php pada folder routes, lalu edit kode program di dalam file web.php seperti gambar di bawah ini:
+<img src="gambar/route-prak2.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> buat folder baru bernama <code>admin</code> lalu di folder <code>admin</code> kita akan membuat 1 file blade dan 1 folder <code>users</code> untuk view yang sederhana. beri nama file <code>dashboard.blade.php</code> di folder admin, dan isikan kode ini:</li>
+</ol>
+</li>
+<li>
+<p><img src="gambar/dashboard-views.png" alt="kode-program"></p>
+</li>
+<li>
+<ol start="6">
+<li>Di <code>resources/views/Admin/users</code> buat2 file yaitu:</li>
+</ol>
+<ul>
+<li><code>index.blade.php</code> dan isikan kode berikut:</li>
+<li><img src="gambar/index-prak3.png" alt="kode-program"></li>
+<li><code>show.blade.php</code></li>
+<li><img src="gambar/show-prak3.png" alt="kode-program"></li>
+</ul>
+</li>
+<li>
+<ol start="7">
+<li>Setelah melakukan langkah 1 hingga 6, maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>.</li>
+</ol>
+</li>
+<li>
+<ol start="8">
+<li>Buka browser lalu ketik kunjungi url url ini</li>
+</ol>
+<ul>
+<li><code>http://127.0.0.1:8000/admin/dashboard</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-dashboard.png" alt="tampilan localhost"></li>
+<li><code>http://127.0.0.1:8000/admin/users</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-user.png" alt="tampilan localhost"></li>
+<li><code>http://127.0.0.1:8000/admin/users/2</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-user2.png" alt="tampilan localhost"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-hasil-dan-pembahasan">3. Hasil dan Pembahasan</h2>
+<ul>
+<li>Apakah aplikasi berjalan sesuai harapan?
+<ul>
+<li>Alhamdulillah hasil dari praktikum ini sesuai harapan meskipun menjumpai beberapa error yang disebabkan karena terlalu terburu-buru sehingga beberapa kali typo.</li>
+</ul>
+</li>
+<li>Bagaimana pengelompokan rute di Laravel 12 bekerja?
+<ul>
+<li>Pengelompokan rute di Laravel 12 itu fungsinya supaya rute yang mirip-mirip bisa digabung jadi satu. Misalnya semua rute admin pakai prefix /admin dan middleware auth, jadi nggak perlu nulis berulang. Cukup pakai Route::prefix('admin')-&gt;middleware('auth')-&gt;group(function () { ... });, nanti semua rute di dalamnya otomatis ikut aturan itu. Intinya, biar kode lebih rapi, gampang diatur, dan nggak ribet kalau mau ubah prefix.</li>
+</ul>
+</li>
+<li>Apa itu prefix?
+<ul>
+<li>Prefix itu kayak tambahan di depan URL yang dipakai bareng-bareng beberapa rute. Misalnya kamu bikin prefix('admin'), berarti semua rute di dalam grup itu URL-nya bakal diawali /admin, contohnya pada praktikum ini yaitu di praktikum 3 yaitu <code>http://127.0.0.1:8000/admin/users/2</code>, yang prefix itu bagian <code>admin</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-kesimpulan">4. Kesimpulan</h2>
+<ul>
+<li>Kesimpulan dari praktikum ini adalahtentang cara kerja controller di Laravel 12, mulai dari pembuatan, pengelolaan rute, pengiriman data ke view, jenis jenis controller, hingga validasi dan respons. Melalui pembahasan dan praktik yang dilakukan, kita belajar bagaimana mengatur struktur aplikasi agar lebih rapi dan efisien, serta mempelajari cara mengelompokkan rute untuk organisasi yang lebih baik. yang nantinya menjadi bekal penting untuk mempelajari fitur Laravel yang lebih kompleks di bab selanjutnya.</li>
+</ul>
+<hr>
+<h2 id="5-referensi">5. Referensi</h2>
+<ul>
+<li>https://buildwithangga.com/tips/apa-itu-controller-pada-laravel</li>
+<li>https://informatika.ciputra.ac.id/2019/10/laravel-controller/</li>
+<li>https://hackmd.io/@mohdrzu/H1sB73dnxg</li>
+</ul>
+
+</body>
+</html>

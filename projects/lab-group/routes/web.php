@@ -13,3 +13,5 @@ Route::controller(PageController::class)->group(function(){
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
 });
+
+

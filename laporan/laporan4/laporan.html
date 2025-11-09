@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>laporan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laporan-modul-2-laravel-blade-template-engine">Laporan Modul 2: Laravel Blade Template Engine</h1>
+<p><strong>Mata Kuliah:</strong> Workshop Web Lanjut<br>
+<strong>Nama:</strong> Ilham Syahdienar<br>
+<strong>NIM:</strong> 2024573010029
+<strong>Kelas:</strong> TI-2C</p>
+<hr>
+<h2 id="abstrak">Abstrak</h2>
+<p>Laporan ini membahas Laravel Blade Template Engine, yaitu mesin templating bawaan Laravel yang memudahkan pembuatan tampilan web yang dinamis dan efisien. Blade mendukung berbagai fitur seperti inheritance layout, komponen reusable, direktif kontrol alur, dan integrasi data dari controller. Dengan Blade, pengembang dapat memisahkan logika dan tampilan secara terstruktur sehingga pengembangan aplikasi web menjadi lebih cepat dan mudah dikelola.</p>
+<hr>
+<h2 id="1-dasar-teori">1. Dasar Teori</h2>
+<ul>
+<li>Apa itu Blade?
+<ul>
+<li>Blade adalah mesin templating laravel yang powerful dan sederhana, yang memungkinkan untuk menulis template yang bersih dan mudah dibaca menggunakan PHP biasa dengan shortcut yang membantu
+<ul>
+<li>Fitur Utama di blade:
+-&gt; Ringan dan cepat
+-&gt; Mendukung inheritance dan components
+-&gt; menyertakan struktur kontrol</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Layouts dan Sections
+<ul>
+<li>Blade memungkinkan kita untuk membuat layout dan section untuk mengatur view yang lebih baik. Ini berguna untuk membuat tampilan yang konsisten di seluruh aplikasi Anda.</li>
+<li>Kita juga dapat membuat child view yang mewarisi layout dengan  code program seperti dibawah ini di child view paling atas
+<ul>
+<li><code>@extends('layouts.app')</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Blade Components
+<ul>
+<li>Blade Components adalah semacam “template mini” yang bisa kamu pakai ulang di mana aja. Misalnya, kamu punya tombol dengan style tertentu yang dipakai berkali-kali di banyak halaman. Daripada nulis ulang HTML-nya terus, mending dibikin component aja.</li>
+</ul>
+</li>
+<li>Perulangan dan Kondisional Blade
+<ul>
+<li>@isset -&gt; mengecek apakah variabel ada.</li>
+<li>@empty -&gt; mengecek apakah variabel ada.</li>
+<li>@isset -&gt; mengecek apakah variabel kosong.</li>
+<li>@switch, @case, @default -&gt; alternatif untuk banyak kondisi</li>
+</ul>
+</li>
+<li>Menampilkan Error Validasi
+<ul>
+<li>Saat menggunakan form, kita dapat menampilkan error validasi di view Blade Anda. Laravel secara otomatis mengikat pesan error ke variabel $errors</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-langkah-langkah-praktikum">2. Langkah-Langkah Praktikum</h2>
+<ul>
+<li>
+<h5 id="21-praktikum-1---meneruskan-data-dari-controller-ke-blade-view">2.1 Praktikum 1 - Meneruskan Data dari Controller ke Blade View</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru dengan nama modul-4-blade-view di folder projects tempat menyimpan folder folder project pada pertemuan sebelumnya menggunakan vscode, buka git bash, dan masuk ke direktori projects:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel modul-4-blade-view</code></li>
+<li>masuk ke direktori modul-4-blade-view</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Buat Controller dengan nama controller:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller DasarBladeController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah membuat controller, selanjutnya definisikan route nya di routes/web.php, tambahkan seperti ini:</li>
+</ol>
+<ul>
+<li><code>use App\Http\Controllers\DasarBladeController;</code>
+<code>Route::get('/dasar', [DasarBladeController::class, 'showData']);</code></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>Selanjutnya kita akan buat metode untuk menghandle data pada controller dengan cara masuk ke app/Http/Controllers/DasarBladeController.php lalu tambahkan code berikut:
+<img src="gambar/cntrl-blade.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> buat file baru dengan nama <code>dasar.blade.php</code>, lalu isi file tersebut dengan kode program seperti gambar di bawah ini:
+<img src="gambar/views.prak1.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li>Jalankan project laravel yang kita buat dengan mengetik <code>php artisan serve</code> diterminal atau git bash</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>Buka browser lalu ketik <code>http:localhost:8000/dasar</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/serve-prak1.png" alt="tampilan localhost"></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="22-praktikum-2-%E2%80%93-menggunakan-struktur-kontrol-blade">2.2 Praktikum 2 – Menggunakan Struktur Kontrol Blade</h5>
+<ul>
+<li>
+<ol>
+<li>Buka project yang sudah dibuat pada praktikum sebelumnya, yaitu modul-4-blade-view</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita buat controller baru, dengan nama LogicController, untuk membuat controller tersebut kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller LogicController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Selanjutnya kita tambahkan route LogicController di routes/web.php, ikuti seperti gambar dibawah ini:</li>
+</ol>
+<ul>
+<li><code>use App\Http\Controllers\LogicController;</code>
+<code>Route::get('/logic', [LogicController::class, 'show']);</code></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>Lalu pada file controller yang sudah dibuat, edit kode program seperti gambar dibawah ini:
+<img src="gambar/cntrl-orak2.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Setelah mengedit controller, kita buat file baru di folder <code>resources/views</code> dengan nama <code>logic.blade.php</code>, dan isi file tersebut dengan kode program pada dibawah ini:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Blade Logic Demo&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Blade Control Structures Demo&lt;/h1&gt;
+        &lt;h2&gt;1. @@if / @@else&lt;/h2&gt;
+        @if ($isLoggedIn)
+            &lt;p&gt;Welcome back, user!&lt;/p&gt;
+        @else
+            &lt;p&gt;Please log in&lt;/p&gt;
+        @endif
+
+        &lt;h2&gt;2. @@foreach&lt;/h2&gt;
+        &lt;ul&gt;
+            @foreach ($users as $user)
+                &lt;li&gt;{{ $user['name'] }} - Role: {{ $user['role'] }}&lt;/li&gt;
+            @endforeach
+        &lt;/ul&gt;
+
+        &lt;h2&gt;3. @@forelse&lt;/h2&gt;
+        @forelse ($products as $product)
+            &lt;p&gt;{{ $product }}&lt;/p&gt;
+        @empty
+            &lt;p&gt;No products found&lt;/p&gt;
+        @endforelse
+
+        &lt;h2&gt;4. @@isset&lt;/h2&gt;
+        @isset($profile['email'])
+            &lt;p&gt;User Email: {{ $profile['email'] }}&lt;/p&gt;
+        @endisset
+
+        &lt;h2&gt;5. @@empty&lt;/h2&gt;
+        @empty($profile['phone'])
+            &lt;p&gt;No phone number available.&lt;/p&gt;
+        @endempty
+
+        &lt;h2&gt;6. @@switch&lt;/h2&gt;
+        @switch($status)
+            @case('active')
+                &lt;p&gt;Status: Active&lt;/p&gt;
+                @break
+            @case('inactive')
+                &lt;p&gt;Status: Inactive&lt;/p&gt;
+                @break
+            @default
+                &lt;p&gt;Status: Unknown&lt;/p&gt;
+        @endswitch
+    &lt;/body&gt;
+&lt;/html&gt;
+
+</div></code></pre>
+</li>
+<li>
+<ol start="6">
+<li>Setelah melakukan langkah a hingga e, kita akan melihat halaman yang mendemonstrasikan berbagai struktur kontrol Blade yang beraksi. maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>, masuk ke <code>http://127.0.0.1:8000/logic</code>, setelah itu buka browser dan akan keluar tampilan seperti gambar dibawah ini:
+<img src="gambar/serve-prak2.png" alt="Output prak2"></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="23-praktikum-3-%E2%80%93-layout-dan-personalisasi-di-laravel-12-dengan-bootstrap">2.3 Praktikum 3 – Layout dan Personalisasi di Laravel 12 dengan Bootstrap</h5>
+<ul>
+<li>
+<ol>
+<li>Buka project yang sudah dibuat pada praktikum sebelumnya, yaitu modul-4-blade-view</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita buat controller baru, dengan nama PageController, untuk membuat controller tersebut kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller PageController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Selanjutnya kita tambahkan route PageController di routes/web.php, ikuti seperti gambar dibawah ini:</li>
+</ol>
+<ul>
+<li><code>use App\Http\Controllers\PageController;</code>
+<code>Route::get('/admin', [PageController::class, 'admin']);</code>
+<code>Route::get('/user', [PageController::class, 'user']);</code></li>
+<li>Ini akan membuat dua rute: <code>/admin dan /user</code>, yang akan ditangani oleh metode admin dan user di PageController, masing-masing.</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>Lalu pada file controller yang sudah dibuat yaitu PageController, tambahkan logika yang mencakup penerusan peran pengguna dan nama pengguana ke view dengan kode program seperti gambar dibawah ini:
+<img src="gambar/cntrl-prak3.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Setelah mengedit controller, kita buat file layout dasar dengan bootstrap baru di folder <code>resources/views</code> buat direktori baru yaitu <code>layouts</code> lalu di dalam <code>layouts</code> isi dengan file <code>app.blade.php</code>, dan isi file tersebut dengan kode program pada dibawah ini:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;@yield('tittle') | Layout and Personalization&lt;/title&gt;
+        &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav class=&quot;navbar navbar-expand-lg navbar-dark bg-dark mb-4&quot;&gt;
+            &lt;div class=&quot;container&quot;&gt;
+                &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Layout and Personalization&lt;/a&gt;
+                &lt;div class=&quot;collapse navbar-collapse&quot;&gt;
+                    &lt;ul class=&quot;navbar-nav ms-auto&quot;&gt;
+                        &lt;li class=&quot;nav-item&quot;&gt;
+                            &lt;span class=&quot;nav-link active&quot;&gt;Welcome, {{ $username }}&lt;/span&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/nav&gt;
+
+        &lt;div class=&quot;container&quot;&gt;
+            @if ($role === 'admin')
+                &lt;div class=&quot;alert alert-info&quot;&gt;Admin Access Granted&lt;/div&gt;
+            @elseif ($role === 'user')
+                &lt;div class=&quot;alert alert-success&quot;&gt; User Area&lt;/div&gt;
+            @endif
+
+            @yield('content')
+        &lt;/div&gt;
+
+        &lt;footer class=&quot;bg-light text-center mt-5 p-3 border-top&quot;&gt;
+            &lt;p class=&quot;mb-0&quot;&gt;$copy; 2025 Layout and Personalization. All right reserved.&lt;/p&gt;
+        &lt;/footer&gt;
+
+        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+</div></code></pre>
+</li>
+<li>
+<ol start="6">
+<li>Setelah membuat layout dasar, selanjutnya kita membuat view untuk dashboard admin, dengan buat direktori <code>admin</code> di <code>resources/views</code> lalu buat file <code>dahsboard.blade.php</code> , pada file ini akan mewarisi layout dasar sebelumnya yaitu <code>app.blade.php</code>, isi dengan kode program dibawah ini:
+<img src="gambar/admin-prak3.png" alt="code program"></li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>Setelah membuat view dashboard untuk admin, selanjutnya kita membuat view untuk dashboard pengguna, dengan buat direktori <code>user</code> di <code>resources/views</code> lalu buat file <code>dahsboard.blade.php</code> , pada file ini akan mewarisi layout dasar sebelumnya yaitu <code>app.blade.php</code>, isi dengan kode program dibawah ini:
+<img src="gambar/user-prak3.png" alt="code program"></li>
+</ol>
+</li>
+<li>
+<ol start="6">
+<li>Setelah melakukan langkah a hingga g, kita akan melihat dashboard admin dan pengguna dengan pesan yang dipersonalisasi dan alert spesifik sesuai dengan peran masing-masing. maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>, masuk ke <code>http://127.0.0.1:8000/logic</code>, setelah itu buka browser dan akan keluar tampilan seperti gambar dibawah ini:</li>
+</ol>
+<ul>
+<li>admin
+<img src="gambar/dash-admin-prak3.png" alt="Output prak3"></li>
+<li>user
+<img src="gambar/dash-user-prak3.png" alt="Output prak3"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="24-praktikum-4---partial-views-blade-components-dan-theme-switching-di-laravel-12">2.4 Praktikum 4 - Partial Views, Blade Components, dan Theme Switching di Laravel 12</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru dengan nama modul-4-laravel-ui di folder projects tempat menyimpan folder folder project pada pertemuan sebelumnya menggunakan vscode, buka git bash, dan masuk ke direktori projects, lalu perintah untuk membuat project baru:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel modul-4-laravel-ui</code></li>
+<li>masuk ke direktori modul-4-laravel-ui</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Buat Controller dengan nama controller:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller UIController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah membuat controller, selanjutnya definisikan route nya di routes/web.php, tambahkan seperti ini:</li>
+</ol>
+<ul>
+<li><code>use App\Http\Controllers\UIController;</code>
+<code>Route::get('/', [UIController::class, 'home'])-&gt;name('home');</code>
+<code>Route::get('/about', [UIController::class, 'about'])-&gt;name('about');</code>
+<code>Route::get('/contact', [UIController::class, 'contact'])-&gt;name('contact');</code>
+<code>Route::get('/profile', [UIController::class, 'home'])-&gt;name('profile');</code>
+<code>Route::get('/switch-theme/{theme}', [UIController::class, 'switchTheme'])-&gt;name('switch-theme');</code></li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>Selanjutnya kita akan mengupdate data pada controller dengan cara masuk ke app/Http/Controllers/UIController.php lalu tambahkan code berikut:</li>
+</ol>
+<pre class="hljs"><code><div>    &lt;?php
+
+    namespace App\Http\Controllers;
+
+    use Illuminate\Http\Request;
+
+    class UIController extends Controller
+    {
+        public function home(Request $request)
+        {
+            $theme = session('theme', 'light');
+            $alertMessage = 'Selamat datang di Laravel UI';
+            $features = [
+                'Partial Views',
+                'Blade Components',
+                'Theme Switching',
+                'Bootstrap 5',
+                'Responsive Design'
+            ];
+            return view('home', compact('theme', 'alertMessage', 'features'));
+        }
+
+        public function about(Request $request)
+        {
+            $theme = session('theme', 'light');
+            $alertMessage = 'Halaman ini menggunakan Partials Views!';
+            $team = [
+                ['name' =&gt; 'Ilham', 'role' =&gt; 'Developer'],
+                ['name' =&gt; 'Budi', 'role' =&gt; 'Frontend Engineer'],
+                ['name' =&gt; 'Rafa', 'role' =&gt; 'Senior Engineer']
+            ];
+            return view('about', compact('theme', 'alertMessage', 'team'));
+        }
+
+        public function contact(Request $request)
+        {
+            $theme = session('theme', 'light');
+            $departments = [
+                'Technical Support',
+                'Sales',
+                'Billing',
+                'General Inquiry'
+            ];
+            return view('contact', compact('theme', 'departments'));
+        }
+
+        public function profile(Request $request)
+        {
+            $theme = session('theme', 'light');
+            $user = [
+                'name' =&gt; 'john doe',
+                'email' =&gt; 'john.doe@example.com',
+                'join_date' =&gt; '2024-05-20',
+                'preferences' =&gt; ['Email Notificarions', 'Dark Mode', 'Newsletter']
+            ];
+            return view('profile', compact('theme', 'user'));
+        }
+
+        public function switchTheme($theme, Request $request)
+        {
+            if (in_array($theme, ['light', 'dark'])) {
+                session(['theme' =&gt; $theme]);
+            }
+            return back();
+        }
+    }
+
+</div></code></pre>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> buat direktori baru dengan nama <code>layouts</code>, lalu di direktori tersebut buat file dengan nama <code>app.blade.php</code>, masukkan kode program seperti di bawah ini:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot; data-bs-theme=&quot;{{ $theme }}&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;@yield('tittle', 'Laravel UI Integrated Demo')&lt;/title&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;style&gt;
+        body {
+            padding-top: 4rem;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .theme-demo {
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card {
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;{{ $theme === 'dark' ? &quot;bg-dark text-light&quot; : 'bg-light text-dark' }}&quot;&gt;
+    
+    {{-- navigasi dengan partial view --}}
+    @include('partials.navigation')
+
+    &lt;div class=&quot;container mt-4&quot;&gt;
+        {{-- alert dengan partial view --}}
+        @if(@isset($alertMessage) &amp;&amp; !empty($alertMessage))
+            @include('partials.alert', ['message' =&gt; $alertMessage, 'type' =&gt; 'info'])
+        @endif
+
+        @yield('content')
+    &lt;/div&gt;
+
+    {{-- Footer menggunakan Blade Component --}}
+    &lt;x-footer :theme=&quot;$theme&quot; /&gt;
+
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        // Smooth theme transition
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeLinks = document.querySelectorAll('a[href*=&quot;switch-theme&quot;]');
+            themeLinks.forEach(link =&gt; {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = this.href;
+                });
+            });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</div></code></pre>
+</li>
+<li>
+<ol start="6">
+<li>Di <code>resources/views</code> buat direktori baru dengan nama <code>partials</code>, lalu di direktori tersebut buat file dengan nama <code>navigation.blade.php</code>, masukkan kode program seperti di bawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;nav class=&quot;navbar navbar-expand-lg {{ $theme === 'dark' ? 'navbar-dark bg-dark' : 'navbar-light bg-light' }} fixed-top shadow&quot;&gt;
+    &lt;div class=&quot;Container&quot;&gt;
+        &lt;a class=&quot;navbar-brand fw-bold&quot; href=&quot;{{ route('home') }}&quot;&gt;
+            Laravel UI Demo
+        &lt;/a&gt;
+
+        &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-bs-toggle=&quot;collapse&quot; data-bs-target=&quot;#navbarNav&quot;&gt;
+            &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbarNav&quot;&gt;
+            &lt;ul class=&quot;navbar-nav me-auto&quot;&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;
+                    &lt;a class=&quot;nav-link {{ request()-&gt;routeIs('home') ? 'active' : '' }}&quot; href=&quot;{{ route('home') }}&quot;&gt;Home&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;
+                    &lt;a class=&quot;nav-link {{ request()-&gt;routeIs('about') ? 'active' : '' }}&quot; href=&quot;{{ route('about') }}&quot;&gt;About&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;
+                    &lt;a class=&quot;nav-link {{ request()-&gt;routeIs('contact') ? 'active' : '' }}&quot; href=&quot;{{ route('contact') }}&quot;&gt;Contact&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&quot;nav-item&quot;&gt;
+                    &lt;a class=&quot;nav-link {{ request()-&gt;routeIs('profile') ? 'active' : '' }}&quot; href=&quot;{{ route('profile') }}&quot;&gt;Profile&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;ul class=&quot;navbar-nav&quot;&gt;
+                &lt;li class=&quot;nav-item dropdown&quot;&gt;
+                    &lt;a class=&quot;nav-link dropdown-toggle&quot; href=&quot;#&quot; role=&quot;button&quot; data-bs-toggle=&quot;dropdown&quot;&gt;
+                        Theme: {{ ucfirst($theme) }}
+                    &lt;/a&gt;
+                    &lt;ul class=&quot;dropdown-menu&quot;&gt;
+                        &lt;li&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;{{ route('switch-theme', 'light') }}&quot;&gt;Mode terang&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a class=&quot;dropdown-item&quot; href=&quot;{{ route('switch-theme', 'dark') }}&quot;&gt;Mode Gelap&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="7">
+<li>Masih di dalam direktori partials, buat file baru yaitu <code>alert.blade.php</code> lalu masukkan kode program dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@if(!empty($message))
+&lt;div class=&quot;alert alert-{{ $type ?? 'info' }} alert-dismissible fade show&quot; role=&quot;alert&quot;&gt;
+    {{ $message }}
+    &lt;button type=&quot;button&quot; class=&quot;btn-close&quot; data-bs-dismiss=&quot;alert&quot;&gt;&lt;/button&gt;
+&lt;/div&gt;
+@endif
+</div></code></pre>
+<ul>
+<li>
+<ol start="8">
+<li>Selanjutnya buat blade components, yaitu berisi component-component yang dapat digunakan berkali kali, component nya yaitu:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>php artisan make:component Footer
+php artisan make:component FeatureCard
+php artisan make:component TeamMember
+php artisan make:component ContactForm
+</div></code></pre>
+<ul>
+<li>
+<ol start="9">
+<li>Setelah membuat beberapa component yang diperlukan, kita akan meng-edit isi component-component nya, pertama yaitu <code>footer.blade.php</code>:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;footer class=&quot;mt-5 py-4 border-top {{ $theme === 'dark' ? 'border-secondary' : '' }}&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-md-6&quot;&gt;
+                &lt;h5&gt;Laravel UI Integrated Demo&lt;/h5&gt;
+                &lt;p class=&quot;mb-0&quot;&gt;Demonstrasi Partial Views, Blade Components, dan Theme Switching&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-6 text-md-end&quot;&gt;
+                &lt;p class=&quot;mb-0&quot;&gt;
+                    &lt;strong&gt;Current Theme&lt;/strong&gt;
+                    &lt;span class=&quot;badge {{ $theme === 'dark' ? 'bg-primary' : 'bg-dark' }}&quot;&gt;
+                        {{ ucfirst($theme) }}
+                    &lt;/span&gt;
+                &lt;/p&gt;
+                &lt;p class=&quot;mb-0&quot;&gt;$copy; 2024 Laravel UI Demo. All right reserved.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="10">
+<li>lalu edit component <code>feature-card.blade.php</code> dengan kode program dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;div class=&quot;card feature-card h-100 {{ $theme === 'dark' ? 'bg-secondary text-white' : '' }}&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;div class=&quot;d-flex align-items-center mb-3&quot;&gt;&lt;/div&gt;
+            &lt;span class=&quot;fs-2 me-3&quot;&gt;{{ $icon ?? '⭐' }}&lt;/span&gt;
+            &lt;h5 class=&quot;card-title mb-0&quot;&gt;{{ $title }}&lt;/h5&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;card-text&quot;&gt;{{ $description }}&lt;/p&gt;
+    @if (isset($badge))
+        &lt;span class=&quot;badge {{ $theme === 'dark' ? 'bg-light text-dark' : 'bg-dark' }}&quot;&gt;{{ $badge }}&lt;/span&gt;
+    @endif
+&lt;/div&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="11">
+<li>selanjutnya edit component <code>team-member.blade.php</code> dengan kode program dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@props(['name', 'role', 'avatar' =&gt; '👤', 'description' =&gt; '', 'theme' =&gt; 'light'])
+
+&lt;div class=&quot;col-md-4 mb-4&quot;&gt;
+    &lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : '' }} h-100&quot;&gt;
+        &lt;div class=&quot;card-body text-center&quot;&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;span class=&quot;fs-1&quot;&gt;{{ $avatar ?? '👤' }}&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;h5 class=&quot;card-title&quot;&gt;{{ $name }}&lt;/h5&gt;
+            &lt;p class=&quot;card-text text-muted&quot;&gt;{{ $role }}&lt;/p&gt;
+            &lt;p class=&quot;card-text&quot;&gt;{{ $description }}&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="12">
+<li>selanjutnya edit component <code>contact-form.blade.php</code> dengan kode program dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@props(['theme' =&gt; 'light', 'departments' =&gt; []])
+&lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : '' }} h-100&quot;&gt;
+    &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5&gt;Form Kontak&lt;/h5&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;form&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Nama Lengkap&lt;/label&gt;
+                &lt;input type=&quot;text&quot; class=&quot;form-control {{ $theme === 'dark' ? 'bg-dark text-light border-light' : '' }}&quot; placeholder=&quot;Masukkan nama Anda&quot;&gt;
+            &lt;/div&gt;
+            
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Email&lt;/label&gt;
+                &lt;input type=&quot;email&quot; class=&quot;form-control {{ $theme === 'dark' ? 'bg-dark text-light border-light' : '' }}&quot; placeholder=&quot;nama@example.com&quot;&gt;
+            &lt;/div&gt;
+            
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Department&lt;/label&gt;
+                &lt;select class=&quot;form-select {{ $theme === 'dark' ? 'bg-dark text-light border-light' : '' }}&quot;&gt;
+                    &lt;option selected&gt;Pilih department...&lt;/option&gt;
+                    @foreach($departments as $dept)
+                    &lt;option value=&quot;{{ $dept }}&quot;&gt;{{ $dept }}&lt;/option&gt;
+                    @endforeach
+                &lt;/select&gt;
+            &lt;/div&gt;
+            
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Pesan&lt;/label&gt;
+                &lt;textarea class=&quot;form-control {{ $theme === 'dark' ? 'bg-dark text-light border-light' : '' }}&quot; rows=&quot;4&quot; placeholder=&quot;Tulis pesan Anda...&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Kirim Pesan&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="13">
+<li>Setelah mengedit semua component, selanjutnya kita membuat view-view utama, di direktori <code>resources/views/</code> buat file baru yaitu <code>home.blade.php</code>, view ini akan menampilkan halaman home dari webnya:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('tittle', 'home - Integrated Demo')
+
+@section('content')
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;div class=&quot;theme-demo {{ $theme === 'dark' ? 'bg-dark border-light' : 'bg-white border' }} mb-5&quot;&gt;
+            &lt;h1 class=&quot;display-4 mb-4&quot;&gt;🛸 Laravel UI Integrated Demo&lt;/h1&gt;
+            &lt;p class=&quot;lead&quot;&gt;Demonstrasi lengkap Partial Views, Blade Components, dan Theme Switching dalam satu aplikasi terpadu.&lt;/p&gt;
+
+            &lt;div class=&quot;row mt-5&quot;&gt;
+                &lt;div class=&quot;col-md-4 mb-4&quot;&gt;
+                    &lt;x-feature-card
+                        :theme=&quot;$theme&quot;
+                        title=&quot;Partial Views&quot;
+                        icon=&quot;📂&quot;
+                        description=&quot;Gunakan @@include untuk reusable UI components dengan data sederhana&quot;
+                        badge='Latihan 13'
+                    /&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-md-4 mb-4&quot;&gt;
+                    &lt;x-feature-card
+                        :theme=&quot;$theme&quot;
+                        title=&quot;Blade Components&quot;
+                        icon=&quot;⚽&quot;
+                        description=&quot;Komponen Blade dengan props dan slots untuk UI yang lebih kompleks.&quot;
+                        badge=&quot;Latihan 14&quot;
+                    /&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-md-4 mb-4&quot;&gt;
+                    &lt;x-feature-card
+                        :theme=&quot;$theme&quot;
+                        title=&quot;Theme Switching&quot;
+                        icon=&quot;🌗&quot;
+                        description=&quot;Toggle antara light dan dark mode dengan session persistance.&quot;
+                        badge=&quot;Latihan 15&quot;
+                    /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-md-6&quot;&gt;
+                &lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : ''}} mb-4&quot;&gt;
+                    &lt;div class=&quot;card-header&quot;&gt;
+                        &lt;h5&gt;FItur Utama&lt;/h5&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+                            @foreach ($features as $feature)
+                            &lt;li class=&quot;list-group-item {{ $theme === 'dark' ? 'bg-dark text-light' : ''}}&quot;&gt;
+                                - {{ $feature }}
+                            &lt;/li&gt;
+                            @endforeach
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;col=md=6&quot;&gt;
+                &lt;div class=&quot;card&quot; {{ $theme === 'dark' ? 'bg-dark border-light' : '' }}&gt;
+                    &lt;div class=&quot;card-headher&quot;&gt;
+                        &lt;h5&gt;Teknologi yang digunakan&lt;/h5&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;div class=&quot;d-flex flex-wrap gap-2&quot;&gt;
+                            &lt;span class=&quot;badge bg-primary&quot;&gt;Laravel 12&lt;/span&gt;
+                            &lt;span class=&quot;badge bg-success&quot;&gt;Blade Tempaltes&lt;/span&gt;
+                            &lt;span class=&quot;badge bg-info&quot;&gt;Bootsrap 5&lt;/span&gt;
+                            &lt;span class=&quot;badge bg-warning&quot;&gt;PHP 8.4&lt;/span&gt;
+                            &lt;span class=&quot;badge bg-danger&quot;&gt;Session Management&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="14">
+<li>Setelah mengedit <code>home.blade.php</code>, selanjutnya kita membuat view utama lainnya, di direktori <code>resources/views/</code> buat file baru yaitu <code>about.blade.php</code>, view ini akan menampilkan halaman about dari webnya:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'About-Partial Views Demo')
+
+@section('content')
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;div class=&quot;theme-demo {{ $theme === 'dark' ? 'bg-dark border-light' : 'bg-white border' }} mb-4&quot;&gt;
+            &lt;h1 class=&quot;mb-4&quot;&gt;About - Partial Views&lt;/h1&gt;
+            &lt;p class=&quot;lead&quot;&gt;Halaman ini mendemonstrasikan penggunaan &lt;strong&gt;Partial Views&lt;/strong&gt; dengan &lt;code&gt;@@include&lt;/code&gt; directive&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;h3 class=&quot;mb-4&quot;&gt;Tim Kami&lt;/h3&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            @foreach($team as $member)
+            &lt;x-team-member
+            :name=&quot;$member['name']&quot;
+            :role=&quot;$member['role']&quot;
+            :theme=&quot;$theme&quot;
+            :avatar=&quot;['👨‍💻','👨‍🏫', '👨‍✈️'][$loop-&gt;index]&quot;
+            :description=&quot;'Bergabung sejak 2019 dan berkontribusi dalam pengembangan.'&quot;
+            /&gt;
+            @endforeach
+        &lt;/div&gt;
+
+        {{-- Demonstrasi Partial View dengan Data --}}
+        @include('partials.team-stats', ['theme' =&gt; $theme])
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>
+<ol start="15">
+<li>Setelah mengedit <code>about.blade.php</code>, selanjutnya kita membuat view lainnya, di direktori <code>resources/views/partials</code> buat file baru yaitu <code>team-stats.blade.php</code>, view ini akan menampilkan halaman statistik dari tim:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : '' }} mt-4&quot;&gt;
+    &lt;div class=&quot;card-header&quot;&gt;
+        &lt;h5&gt;Statistik Tim&lt;/h5&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;div class=&quot;row tect-center&quot;&gt;
+            &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;h3&gt;3&lt;/h3&gt;
+                &lt;p class=&quot;text-muted&quot;&gt;Anggota&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;h3&gt;12+&lt;/h3&gt;
+                &lt;p class=&quot;text-muted&quot;&gt;Project&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;h3&gt;95%&lt;/h3&gt;
+                &lt;p class=&quot;text-muted&quot;&gt;Kepuasan&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-3&quot;&gt;
+                &lt;h3&gt;6+&lt;/h3&gt;
+                &lt;p class=&quot;text-muted&quot;&gt;Tahun&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="16">
+<li>Setelah mengedit <code>team-stats.blade.php</code>, selanjutnya kita membuat view lainnya, di direktori <code>resources/views/</code> buat file baru yaitu <code>contact.blade.php</code>, view ini akan menampilkan halaman utama contact pada web:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('tittle', 'Contact - Components Demo')
+
+@section('content')
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;div class=&quot;theme-demo {{ $theme === 'dark' ? 'bg-dark border-light' : 'bg-white border' }}&quot;&gt;
+            &lt;h1 class=&quot;mb-4&quot;&gt;Contact - Blade Component&lt;/h1&gt;
+            &lt;p class=&quot;lead&quot;&gt;Halaman ini mendemonstrasikan penggunaan &lt;strong&gt;Blade Components&lt;/strong&gt; dengan props dan slots.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-md-6&quot;&gt;
+                &lt;x-contact-form :theme=&quot;$theme&quot; :departments=&quot;$departments&quot; /&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-md-6&quot;&gt;
+                &lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : '' }} h-100&quot;&gt;
+                    &lt;div class=&quot;card-header&quot;&gt;
+                        &lt;h5&gt;Informasi Kontak&lt;/h5&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; info@laraveldemo.com&lt;/p&gt;
+                        &lt;p&gt;&lt;Strong&gt;Telepon:&lt;/Strong&gt; +62 21 1234 5678&lt;/p&gt;
+                        &lt;p&gt;&lt;strong&gt;Alamat:&lt;/strong&gt; Jakarta, Indonesia&lt;/p&gt;
+
+                        &lt;h6 class=&quot;mt-4&quot;&gt;Departmeni Tersedia:&lt;/h6&gt;
+                        &lt;ul&gt;
+                            @foreach ($departments as $dept)
+                                &lt;li&gt;{{ $dept }}&lt;/li&gt;
+                            @endforeach
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>
+<ol start="17">
+<li>Setelah mengedit <code>contact.blade.php</code>, selanjutnya kita membuat view lainnya, di direktori <code>resources/views/</code> buat file baru yaitu <code>profile.blade.php</code>, view ini akan menampilkan halaman profile pada web:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'Profile - Theme Demo')
+
+@section('content')
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;div class=&quot;theme-demo {{ $theme === 'dark' ? 'bg-dark border-light' : 'bg-white border' }} mb-4&quot;&gt;
+            &lt;h1 class=&quot;mb-4&quot;&gt;Profile - Theme Demo&lt;/h1&gt;
+            &lt;p class=&quot;lead&quot;&gt;Halaman ini menunjukkan implementasi &lt;strong&gt;Theme Switching&lt;/strong&gt; dengan session persistence.&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-md-4&quot;&gt;
+                &lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : '' }} text-center&quot;&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;div class=&quot;mb-3&quot;&gt;
+                            &lt;span class=&quot;fs-1&quot;&gt;👤&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;h4&gt;{{ $user['name'] }}&lt;/h4&gt;
+                        &lt;p class=&quot;text-muted&quot;&gt;{{ $user['email'] }}&lt;/p&gt;
+                        &lt;p class=&quot;text-muted&quot;&gt;Bergabung: {{ date('d M Y', strtotime($user['join_date'])) }}&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            
+            &lt;div class=&quot;col-md-8&quot;&gt;
+                &lt;div class=&quot;card {{ $theme === 'dark' ? 'bg-dark border-light' : '' }}&quot;&gt;
+                    &lt;div class=&quot;card-header&quot;&gt;
+                        &lt;h5&gt;Preferensi Pengguna&lt;/h5&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;h6&gt;Theme Saat Ini:&lt;/h6&gt;
+                        &lt;div class=&quot;alert alert-{{ $theme === 'dark' ? 'dark' : 'info' }} d-flex align-items-center&quot;&gt;
+                            &lt;span class=&quot;me-2 fs-4&quot;&gt;{{ $theme === 'dark' ? '🌙' : '☀️' }}&lt;/span&gt;
+                            &lt;div&gt;
+                                &lt;strong&gt;Mode {{ ucfirst($theme) }}&lt;/strong&gt; - 
+                                @if($theme === 'dark')
+                                    Nyaman di malam hari dan mengurangi ketegangan mata.
+                                @else
+                                    Cerah dan jelas, cocok untuk siang hari.
+                                @endif
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        
+                        &lt;h6 class=&quot;mt-4&quot;&gt;Preferensi Lainnya:&lt;/h6&gt;
+                        &lt;div class=&quot;d-flex flex-wrap gap-2&quot;&gt;
+                            @foreach($user['preferences'] as $pref)
+                            &lt;span class=&quot;badge bg-secondary&quot;&gt;{{ $pref }}&lt;/span&gt;
+                            @endforeach
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;mt-4&quot;&gt;
+                            &lt;h6&gt;Ubah Tema:&lt;/h6&gt;
+                            &lt;div class=&quot;btn-group&quot; role=&quot;group&quot;&gt;
+                                &lt;a href=&quot;{{ route('switch-theme', 'light') }}&quot; class=&quot;btn btn-{{ $theme === 'light' ? 'primary' : 'outline-primary' }}&quot;&gt;
+                                    Light Mode
+                                &lt;/a&gt;
+                                &lt;a href=&quot;{{ route('switch-theme', 'dark') }}&quot; class=&quot;btn btn-{{ $theme === 'dark' ? 'primary' : 'outline-primary' }}&quot;&gt;
+                                    Dark Mode
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>
+<ol start="18">
+<li>Setelah melakukan langkah-langkah diatas, maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>, masuk ke:
+Home: <code>http://127.0.0.1:8000</code>
+About: <code>http://127.0.0.1:8000/about</code>
+Contact: <code>http://127.0.0.1:8000/contact</code>
+Profile: <code>http://127.0.0.1:8000/profile</code>
+setelah itu buka browser dan akan keluar tampilan seperti gambar dibawah ini:</li>
+</ol>
+<ul>
+<li>Home
+<img src="gambar/home.png" alt="Output prak4"></li>
+<li>About
+<img src="gambar/about.png" alt="Output prak4"></li>
+<li>Contact
+<img src="gambar/contact.png" alt="Output prak4"></li>
+<li>Profile
+<img src="gambar/profile.png" alt="Output prak4"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-hasil-dan-pembahasan">3. Hasil dan Pembahasan</h2>
+<ul>
+<li>Apakah aplikasi berjalan sesuai harapan?
+<ul>
+<li>Alhamdulillah hasil dari praktikum ini sesuai harapan meskipun menjumpai beberapa error yang disebabkan karena terlalu terburu-buru sehingga beberapa kali typo.</li>
+</ul>
+</li>
+<li>Cara Menggunakan Blade Templating Pada Laravel
+<ul>
+<li>untuk menggunakan fitur Blade Templating ini kita tidak perlu menginstall sesuatu untuk menggunakannya karena fitur Blade Templating sudah otomatis aktif apabila kita telah menginstall framework Laravel. Itulah sebabnya mengapa pada framework Laravel terdapat tulisa “blade” pada format file PHP. Jika kita menghapus tulisan “blade” pada file PHP pada folder views maka fitur Blade Templating akan tidak bisa digunakan dan file berubah menjadi file PHP biasa.</li>
+</ul>
+</li>
+<li>Apa peran masing-masing komponen (Route, Controller, View) dalam program yang dibuat?
+<ul>
+<li>Route = Berperan sebagai tempat untuk pengalamatan yang akan ditampilkan ke user</li>
+<li>Controller = Beperan sebagai pengatur logika atau validasi yang digunakan saat request dan respon ke user.</li>
+<li>View = Berperan bekerja sama dengan controller, yaitu saat controller meminta request dari user lalu melakukan validasi atau eksekusi program maka setelah itu akan ditampilkan hasil eksekusi yang dilakukan. dan tugas yang mengatur tampilan atau menyajikan tampilan data tersebut adalah view.</li>
+<li>Blade = Berperan sebagai template engine yang menjembatani logika PHP dengan tampilan HTML. Dengan Blade, kita dapat menggunakan direktif seperti @if, @foreach, @extends, dan @include untuk membuat tampilan yang dinamis dan mudah dipelihara</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-kesimpulan">4. Kesimpulan</h2>
+<ul>
+<li>Kesimpulan dari praktikum ini adalah framwork Laravel yang memiliki tampilan dinamis dan terstruktur dengan menggunakan sistem layout, components, dan includes. Selain itu, penggunaan Blade juga membuat pengguna tidak susah payah untuk mengoding dari html ke php, hanya dengan blade kode HTML ditranslate agar bisa di baca dengan laravel, selain itu menggunakan blade membuat lebih rapi, tidak berulang (DRY), dan mudah dikembangkan untuk proyek yang lebih besar.</li>
+</ul>
+<hr>
+<h2 id="5-referensi">5. Referensi</h2>
+<ul>
+<li>https://www.rumahweb.com/journal/belajar-laravel-bagian-4/</li>
+<li>https://buildwithangga.com/tips/cara-menggunakan-blade-templating-pada-laravel</li>
+<li>https://hackmd.io/@mohdrzu/r1AIUzWpll</li>
+</ul>
+
+</body>
+</html>
