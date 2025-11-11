@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>laporan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laporan-modul-6-model-dan-laravel-eloquent">Laporan Modul 6: Model dan Laravel Eloquent</h1>
+<p><strong>Mata Kuliah:</strong> Workshop Web Lanjut<br>
+<strong>Nama:</strong> Ilham Syahdienar<br>
+<strong>NIM:</strong> 2024573010029
+<strong>Kelas:</strong> TI-2C</p>
+<hr>
+<h2 id="abstrak">Abstrak</h2>
+<p>Laporan ini membahas tentang bagaimana Laravel 12 mengelola sistem database menggunakan lapisan abstraksi yang kuat, termasuk penggunaan Migration, Seeder, dan Eloquent ORM. Dalam framework Laravel, pengembang dapat dengan mudah melakukan konfigurasi koneksi database melalui file .env, melakukan version control skema menggunakan Migration, mengisi data awal dengan Seeder, serta berinteraksi dengan tabel database menggunakan pendekatan berorientasi objek melalui Eloquent ORM. Dengan adanya fitur-fitur ini, pengelolaan data menjadi lebih efisien, terstruktur, dan konsisten dengan prinsip MVC (Model-View-Controller).</p>
+<hr>
+<h2 id="1-dasar-teori">1. Dasar Teori</h2>
+<ul>
+<li>Apa itu konfigurasi database di Laravel dan bagaimana cara mengaturnya?
+<ul>
+<li>Dalam Laravel, konfigurasi database adalah langkah awal agar aplikasi dapat terhubung dengan sistem manajemen basis data seperti MySQL, PostgreSQL, SQLite, atau SQL Server. Pengaturan koneksi database biasanya dilakukan di file .env sehingga mudah diubah tanpa menyentuh kode program. Di dalam file tersebut, kita mendefinisikan nama database, host, port, username, dan password, misalnya DB_DATABASE=myapp, DB_USERNAME=root, dan DB_PASSWORD=secret. Laravel secara otomatis membaca konfigurasi ini dan menghubungkannya melalui file config/database.php. Untuk memastikan koneksi berhasil, perintah php artisan migrate:status dapat digunakan.</li>
+</ul>
+</li>
+<li>Apa yang dimaksud dengan Migration dalam Laravel dan apa fungsinya?
+<ul>
+<li>Migration di Laravel berfungsi untuk mengatur dan memodifikasi struktur tabel pada database menggunakan kode PHP, bukan SQL secara langsung. Dengan Migration, pengembang dapat melacak perubahan struktur database seiring perkembangan aplikasi, mirip dengan sistem version control. Migration dibuat dengan perintah php artisan make:migration, lalu diisi menggunakan class Schema dan objek Blueprint untuk mendefinisikan kolom tabel. Misalnya, Schema::create('users', function (Blueprint $table) { ... }); digunakan untuk membuat tabel baru. Migration dijalankan menggunakan php artisan migrate, yang secara otomatis menerapkan perubahan struktur ke database.</li>
+</ul>
+</li>
+<li>Apa fungsi Seeder?
+<ul>
+<li>Seeder digunakan untuk mengisi tabel database dengan data awal atau data percobaan (dummy data). Hal ini sangat berguna dalam tahap pengembangan agar aplikasi memiliki data contoh tanpa perlu memasukkan secara manual. Untuk membuat seeder, digunakan perintah php artisan make:seeder, lalu di dalamnya dapat ditulis perintah seperti User::create([...]) untuk menambahkan data ke tabel tertentu. Setelah seeder dibuat, pengembang dapat menjalankannya menggunakan php artisan db:seed --class=NamaSeeder. Dengan demikian, Seeder membantu mempercepat proses pengujian dan memastikan database selalu memiliki data awal yang konsisten</li>
+</ul>
+</li>
+<li>Apa yang dimaksud dengan Eloquent ORM
+<ul>
+<li>Eloquent ORM (Object Relational Mapper) adalah fitur Laravel yang memungkinkan pengembang berinteraksi dengan database menggunakan pendekatan berorientasi objek. Setiap tabel di database diwakili oleh sebuah model, dan setiap baris di tabel dianggap sebagai objek.</li>
+</ul>
+</li>
+<li>Apa hubungan antara Model, Entity, dan Repository Pattern dalam Laravel?
+<ul>
+<li>Model di Laravel berfungsi sebagai representasi tabel database dan menjadi tempat logika interaksi data disimpan. Sementara itu, Entity adalah kelas sederhana yang hanya berfungsi untuk membawa data tanpa bergantung pada fitur Laravel. Dalam beberapa arsitektur, digunakan juga DTO (Data Transfer Object) yang bertugas memindahkan data antar lapisan aplikasi secara terstruktur. Di sisi lain, Repository Pattern digunakan untuk memisahkan logika bisnis dari logika akses data. Dengan cara ini, kode menjadi lebih modular, mudah diuji, dan perubahan pada lapisan data tidak akan mempengaruhi lapisan lain dalam aplikasi.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-langkah-langkah-praktikum">2. Langkah-Langkah Praktikum</h2>
+<ul>
+<li>
+<h5 id="21-praktikum-1---menggunakan-model-untuk-binding-form-dan-display">2.1 Praktikum 1 - Menggunakan Model untuk Binding Form dan Display</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru dengan nama <code>model-app</code> di folder projects tempat menyimpan folder folder project pada pertemuan sebelumnya menggunakan vscode, buka git bash, dan masuk ke direktori projects:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel model-app</code></li>
+<li>masuk ke direktori model-app</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Buat Controller dengan nama controller:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller ProductController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Selanjutnya kita akan buat metode untuk menangani logika pada controller dengan cara masuk ke app/Http/Controllers/Controller.php lalu tambahkan code berikut:
+<img src="gambar/control-prak1.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Setelah membuat controller, selanjutnya kita akan membuat sebuah direktori baru bernama <code>ViewModels</code> di direktori <code>app</code>, Buat <code>ProductViewModel.php</code> di dalam direktori <code>app/ViewModels</code> Kemudian buat kelas model sederhana untuk menyimpan data produk. Kelas ini akan memiliki properti untuk nama produk, harga, dan deskripsi:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;?php
+namespace App\ViewModels;
+
+class ProductViewModel
+{
+    public string $name;
+    public float $price;
+    public string $description;
+
+    public function __construct(string $name = '', float $price = 0, string $description = '')
+    {
+        $this-&gt;name = $name;
+        $this-&gt;price = $price;
+        $this-&gt;description = $description;
+    }
+
+    public static function fromRequest(array $data): self
+    {
+        return new self(
+            $data['name']?? '',
+            (float)($data['price'] ?? 0),
+            $data['description'] ?? '',
+        );
+    }
+}
+
+</div></code></pre>
+</li>
+<li>
+<ol start="4">
+<li>Setelah membuat controller, selanjutnya definisikan route nya di routes/web.php, tambahkan seperti ini:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/product/create', [ProductController::class, 'create'])-&gt;name('product.create');
+Route::post('/product/result', [ProductController::class, 'result'])-&gt;name('product.result');
+
+</div></code></pre>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> buat direktori baru dengan nama <code>product</code>, lalu di direktri tersebut buat dau file yaitu:</li>
+</ol>
+<ul>
+<li>create.blade.php</li>
+<li>result.blade.php
+isi file tersebut dengan kode program seperti gambar di bawah ini:
+<code>create.blade.php</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Create Product&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;container py-5&quot;&gt;
+        &lt;h2&gt;Create Product (No Database)&lt;/h2&gt;
+        &lt;form action=&quot;{{ route('product.result') }}&quot; method=&quot;POST&quot;&gt;
+            @csrf
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Name&lt;/label&gt;
+                &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;form-control&quot; required&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Price&lt;/label&gt;
+                &lt;input type=&quot;number&quot; name=&quot;price&quot; step=&quot;0.01&quot; class=&quot;form-control&quot; required&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label class=&quot;form-label&quot;&gt;Description&lt;/label&gt;
+                &lt;textarea name=&quot;description&quot; class=&quot;form-control&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit Product&lt;/button&gt;
+        &lt;/form&gt;
+        
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<ul>
+<li><code>result.blade.php</code></li>
+</ul>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Product Result&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;container py-5&quot;&gt;
+        &lt;h2&gt;Submitted Product Details&lt;/h2&gt;
+        &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;li class=&quot;list-group-item&quot;&gt;&lt;strong&gt;Name:&lt;/strong&gt; {{ $product-&gt;name }}&lt;/li&gt;
+            &lt;li class=&quot;list-group-item&quot;&gt;&lt;strong&gt;price:&lt;/strong&gt; ${{ number_format($product-&gt;price, 2) }}&lt;/li&gt;
+            &lt;li class=&quot;list-group-item&quot;&gt;&lt;strong&gt;Description:&lt;/strong&gt; {{ $product-&gt;description }}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;a href=&quot;{{ route('product.create') }}&quot; class=&quot;btn btn-link mt-3&quot;&gt;Submit Another Product&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="6">
+<li>Jalankan project laravel yang kita buat dengan mengetik <code>php artisan serve</code> diterminal atau git bash</li>
+</ol>
+</li>
+<li>
+<ol start="7">
+<li>Buka browser lalu ketik <code>http:localhost:8000/product/create</code>, maka nanti akan keluar seperti gambar dibawah ini:
+<img src="gambar/create.produk.png" alt="tampilan localhost">
+lalu jika sudah mengisi formnya dan kita akan menekan tombol submit maka akan menampilkan data yang dikirim:
+<img src="gambar/submit.png" alt="gambar">
+jika kita mencoba mengirim form tanpa mengisi field yang wajib maka akan melihat error validasi</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="22-praktikum-2-%E2%80%93-menggunakan-dto-data-transfer-object">2.2 Praktikum 2 – Menggunakan DTO (Data Transfer Object)</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru yaitu <code>dto-app</code></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita akan membuat sebuah direktori baru bernama <code>DTO</code> di direktori <code>app</code>, Buat <code>ProductDTO.php</code> di dalam direktori <code>app/DTO</code> Kemudian buat kelas model sederhana untuk menyimpan data produk. Kelas ini akan memiliki properti untuk nama produk, harga, dan deskripsi:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;?php
+
+namespace App\DTO;
+class ProductDTO
+{
+   public string $name;
+   public string $price;
+   public string $description;
+
+   public function __construct(string $name, float $price, string $description)
+   {
+       $this-&gt;name = $name;
+       $this-&gt;price = $price;
+       $this-&gt;description = $description;
+   }
+
+   public static function fromRequest(array $data): self
+   {
+       return new self(
+           $data['name'] ?? '',
+           (float)($data['price'] ?? 0),
+           $data['description'] ?? ''
+       );
+   }
+}
+</div></code></pre>
+<ul>
+<li>
+<ol start="3">
+<li>Masih di direktori <code>app</code>, Buat direktori baru lagi bernama <code>Services</code>, di dalam direktori <code>app/Services</code> buat file <code>ProductServices.php</code> Kemudian buat kelas yang akan menangani logika bisnis. Kelas ini akan menerima DTO sebagai input dan mengembalikan data yang telah diformat:
+<img src="gambar/DTO-service.png" alt="kode program"></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Selanjutnya kita buat controller, dengan nama <code>ProductController</code>, untuk membuat controller tersebut kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller ProductController</code></li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li>Lalu pada file controller yang sudah dibuat yaitu ProductController, tambahkan logika dengan kode program seperti dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\DTO\ProductDTO;
+use App\Services\ProductService;
+
+class ProductController extends Controller
+{
+    public function create()
+    {
+        return view('product.create');
+    }
+
+    public function result(Request $request)
+    {
+        $dto = ProductDTO::fromRequest($request-&gt;all());
+        $service = new ProductService();
+        $product = $service-&gt;display($dto);
+
+        return view('product.result', compact('product'));
+    }
+}
+
+</div></code></pre>
+<ul>
+<li>
+<ol start="6">
+<li>Selanjutnya kita tambahkan route ProductController di <code>routes/web.php</code>, ikuti seperti kode program dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/product/create', [ProductController::class, 'create'])-&gt;name('product.create');
+Route::post('/product/result', [ProductController::class, 'result'])-&gt;name('product.result');
+</div></code></pre>
+<ul>
+<li>
+<ol start="5">
+<li>Setelah menambabhkan rute ProductController di routes/web.php, kita buat folder baru di <code>resources/views</code> dengan nama <code>product</code>, dan isi folder tersebut dengan file-file ini:</li>
+</ol>
+<ul>
+<li>create.blade.php</li>
+<li>result.blade.php
+isikan kode program disetiap file seperti dibawah ini:
+<code>create.blade.php</code></li>
+</ul>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Create Product DTO&lt;/title&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;container py-5&quot;&gt;
+    &lt;div class=&quot;row justify-content-center&quot;&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+            &lt;h2 class=&quot;mb-4&quot;&gt;Create Product&lt;/h2&gt;
+            &lt;form method=&quot;POST&quot; action=&quot;{{ route('product.result') }}&quot;&gt;
+                @csrf
+                &lt;div class=&quot;mb-3&quot;&gt;
+                    &lt;label class=&quot;form-label&quot;&gt;Name&lt;/label&gt;
+                    &lt;input name=&quot;name&quot; class=&quot;form-control&quot; required&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;mb-3&quot;&gt;
+                    &lt;label class=&quot;form-label&quot;&gt;Price&lt;/label&gt;
+                    &lt;input name=&quot;price&quot; type=&quot;number&quot; step=&quot;0.01&quot; class=&quot;form-control&quot; required&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;mb-3&quot;&gt;
+                    &lt;label class=&quot;form-label&quot;&gt;Description&lt;/label&gt;
+                    &lt;textarea name=&quot;description&quot; class=&quot;form-control&quot; rows=&quot;3&quot;&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit Product&lt;/button&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<p><code>result.blade.php</code></p>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Product Result&lt;/title&gt;
+    &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;container py-5&quot;&gt;
+    &lt;div class=&quot;row justify-content-center&quot;&gt;
+        &lt;div class=&quot;col-md-6&quot;&gt;
+            &lt;h2 class=&quot;mb-4&quot;&gt;Product DTO Result&lt;/h2&gt;
+            &lt;div class=&quot;card&quot;&gt;
+                &lt;div class=&quot;card-header&quot;&gt;
+                    &lt;h5 class=&quot;card-title mb-0&quot;&gt;Product Details&lt;/h5&gt;
+                &lt;/div&gt;
+                &lt;ul class=&quot;list-group list-group-flush&quot;&gt;
+                    &lt;li class=&quot;list-group-item&quot;&gt;
+                        &lt;strong&gt;Name:&lt;/strong&gt; {{ $product['name'] }}
+                    &lt;/li&gt;
+                    &lt;li class=&quot;list-group-item&quot;&gt;
+                        &lt;strong&gt;Price:&lt;/strong&gt; ${{ number_format($product['price'], 2) }}
+                    &lt;/li&gt;
+                    &lt;li class=&quot;list-group-item&quot;&gt;
+                        &lt;strong&gt;Description:&lt;/strong&gt; {{ $product['description'] }}
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;a href=&quot;{{ route('product.create') }}&quot; class=&quot;btn btn-secondary mt-3&quot;&gt;Submit Another Product&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</div></code></pre>
+</li>
+<li>
+<ol start="6">
+<li>Buka browser lalu ketik <code>http:localhost:8000/product/create</code>, maka nanti akan keluar seperti gambar dibawah ini:
+<img src="gambar/create.produk.png" alt="tampilan localhost">
+lalu jika sudah mengisi formnya dan kita akan menekan tombol submit maka akan menampilkan data yang dikirim:
+<img src="gambar/submit-prak2.png" alt="gambar">
+jika kita mencoba mengirim form tanpa mengisi field yang wajib maka akan melihat error validasi</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="23-praktikum-3-%E2%80%93-membangun-aplikasi-web-todo-sederhana-dengan-laravel-12-eloquent-orm-dan-mysql">2.3 Praktikum 3 – Membangun Aplikasi Web Todo Sederhana dengan Laravel 12, Eloquent ORM, dan MySQL</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru dengan nama <code>todo-app-mysql</code> di folder projects tempat menyimpan folder folder project pada pertemuan sebelumnya menggunakan vscode, buka git bash, dan masuk ke direktori projects:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel todo-app-mysql</code></li>
+<li>masuk ke direktori todo-app-mysql</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Buat Database tododb; pada phpadmin, setelah itu install dependency MySQL dengan: <code>composer require doctrine/dbal</code></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Konfigurasi pada env dengan menyesesuaikan nama database yang digunakan dan jenis databasenya:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tododb
+DB_USERNAME=database_anda
+DB_PASSWORD=password-database_jika_ada
+setelah itu jalankan perintah <code>php artisan config:clear</code></li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Lalu kita akan membuat file migrasi, ini berguna untuk mendefinisikan struktur tabel todos, jalankan perintah:
+<code>php artisan make:migration create_todos_table</code></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>di direktori <code>database/migrations/</code> cari file yang telah dibuat yaitu <code>YYYY_MM_DD_create_todos_table.php</code> dan perbarui file nya seperti kode berikut:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+    * Run the migrations.
+    */
+    public function up(): void
+    {
+        Schema::create('todos', function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string('task');
+            $table-&gt;boolean('completed')-&gt;default(false);
+            $table-&gt;timestamps();
+        });
+    }
+
+    /**
+    * Reverse the migrations.
+    */
+    public function down(): void
+    {
+        Schema::dropIfExists('todos');
+    }
+};
+</div></code></pre>
+</li>
+</ul>
+<p>Setelah mengedit file migrasi, kita perlu menjalankan migrasi untuk membuat tabel todos dalam database. jalankan <code>php artisan migrate</code></p>
+<ul>
+<li>
+<ol start="6">
+<li>Selanjutnya kita akan membuat seeder untuk data dummy, untuk membuat seeder jalankan perintah:
+<code>php artisan make:seeder TodoSeeder</code> Buka file yang dihasilkan di <code>database/seeders/TodoSeeder.php</code> dan perbarui dengan kode program:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+class TodoSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('todos')-&gt;insert([
+            [
+                'task' =&gt; 'Belanja bahan makanan',
+                'completed' =&gt; false,
+                'created_at' =&gt; Carbon::now(),
+                'updated_at' =&gt; Carbon::now()
+            ],
+            [
+                'task' =&gt; 'Beli buah-buahan',
+                'completed' =&gt; false,
+                'created_at' =&gt; Carbon::now(),
+                'updated_at' =&gt; Carbon::now()
+            ],
+            [
+                'task' =&gt; 'Selesaikan proyek Laravel',
+                'completed' =&gt; true,
+                'created_at' =&gt; Carbon::now(),
+                'updated_at' =&gt; Carbon::now()
+            ],
+        ]);
+    }
+}
+
+</div></code></pre>
+</li>
+</ul>
+<p>lalu jalankan perintah berikut <code>php artisan db:seed --class=TodoSeeder</code>
+perintah ini untuk mengisi database dengan data dummy</p>
+<ul>
+<li>
+<ol start="7">
+<li>Selanjutnya kita akan membuat model agar bisa berinteraksi dengan tabel todos menggunakan Eloquent ORM,
+jalankan perintah:
+<code>php artisan make:model Todo</code>
+lalu buka file yang dihasilkan dari perintah tersebut di  direktori <code>app/Models/Todo.php</code> lalu isi kode program seperti berikut:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Todo extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['task', 'completed'];
+}
+</div></code></pre>
+<ul>
+<li>
+<ol start="8">
+<li>Selanjutnya kita akan membuat controller yang akan menangani operasi CRUD untuk tabel todos, buat nama controllernya <code>TodoController</code>
+dengan perintah <code>php artisan make:controller TodoController.</code>
+lalu buat edit code nya seperti ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Todo;
+
+class TodoController extends Controller
+{
+    public function index()
+    {
+        $todos = Todo::all();
+        return view('todos.index', compact('todos'));
+    }
+
+    public function create()
+    {
+        return view('todos.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request-&gt;validate(['task' =&gt; 'required|string']);
+        Todo::create(['task' =&gt; $request-&gt;task]);
+        return redirect()-&gt;route('todos.index')-&gt;with('success', 'Task added successfully!');
+    }
+
+    public function show(Todo $todo)
+    {
+        return view('todos.show', compact('todo'));
+    }
+
+    public function edit(Todo $todo)
+    {
+        return view('todos.edit', compact('todo'));
+    }
+
+    public function update(Request $request, Todo $todo)
+    {
+        $request-&gt;validate(['task' =&gt; 'required|string']);
+        $todo-&gt;update(['task' =&gt; $request-&gt;task]);
+        return redirect()-&gt;route('todos.index')-&gt;with('success', 'Task updated successfully!');
+    }
+
+    public function destroy(Todo $todo)
+    {
+        $todo-&gt;delete();
+        return redirect()-&gt;route('todos.index')-&gt;with('success', 'Task deleted successfully!');
+    }
+}
+</div></code></pre>
+<ul>
+<li>
+<ol start="9">
+<li>Selanjutnya kita tambahkan route ProductController di <code>routes/web.php</code>, ikuti seperti kode program dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodoController;
+
+Route::get('/', [TodoController::class, 'index'])-&gt;name('todos.index');
+Route::get('/todos/create', [TodoController::class, 'create'])-&gt;name('todos.create');
+Route::post('/todos', [TodoController::class, 'store'])-&gt;name('todos.store');
+Route::get('/todos/{todo}', [TodoController::class, 'show'])-&gt;name('todos.show');
+Route::get('/todos/{todo}/edit', [TodoController::class, 'edit'])-&gt;name('todos.edit');
+Route::patch('/todos/{todo}', [TodoController::class, 'update'])-&gt;name('todos.update');
+Route::delete('/todos/{todo}', [TodoController::class, 'destroy'])-&gt;name('todos.destroy');
+</div></code></pre>
+<ul>
+<li>
+<ol start="10">
+<li>Selanjutnya kita akan membuat tampilan blade dengan bootstrap, di <code>resources/views</code> buat direktori baru yaitu:
+<code>layouts</code>
+<code>todos</code>
+di <code>resources/views/layouts</code> buat file baru yaitu <code>app.blade.php</code>
+kemudian isikan kode program:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">"en"</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"UTF-8"</span>&gt;
+    &lt;meta name=<span class="hljs-string">"viewport"</span> content=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;
+    &lt;title&gt;@<span class="hljs-keyword">yield</span>(<span class="hljs-string">'title'</span>, <span class="hljs-string">'Todo App'</span>)&lt;/title&gt;
+    &lt;link href=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</span> rel=<span class="hljs-string">"stylesheet"</span>&gt;
+&lt;/head&gt;
+&lt;body <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">container</span> <span class="hljs-title">mt</span>-4"&gt;
+
+    &lt;<span class="hljs-title">h1</span> <span class="hljs-title">class</span>="<span class="hljs-title">text</span>-<span class="hljs-title">center</span> <span class="hljs-title">mb</span>-4"&gt;<span class="hljs-title">Laravel</span> 12 <span class="hljs-title">Todo</span> <span class="hljs-title">App</span>&lt;/<span class="hljs-title">h1</span>&gt;
+
+    @<span class="hljs-title">if</span>(<span class="hljs-title">session</span>('<span class="hljs-title">success</span>'))
+        &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">alert</span> <span class="hljs-title">alert</span>-<span class="hljs-title">success</span>"&gt;</span>{{ session(<span class="hljs-string">'success'</span>) }}&lt;/div&gt;
+    @<span class="hljs-keyword">endif</span>
+
+    &lt;nav <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">mb</span>-3"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">href</span>="</span>{{ route(<span class="hljs-string">'todos.index'</span>) }}<span class="hljs-string">" class="</span>btn btn-primary<span class="hljs-string">"&gt;Todo List&lt;/a&gt;
+        &lt;a href="</span>{{ route(<span class="hljs-string">'todos.create'</span>) }}<span class="hljs-string">" class="</span>btn btn-success<span class="hljs-string">"&gt;Add New Task&lt;/a&gt;
+    &lt;/nav&gt;
+
+    @yield('content')
+
+&lt;/body&gt;
+&lt;/html&gt;
+</span></div></code></pre>
+<p>di <code>resources/views/todos</code>buat beberapa file blade:</p>
+<ul>
+<li><code>index.blade.php</code>: Tampilan ini akan menampilkan daftar todos. lalu isi dengan  kode berikut:</li>
+</ul>
+<pre class="hljs"><code><div>@extends(<span class="hljs-string">'layouts.app'</span>)
+
+@section(<span class="hljs-string">'title'</span>, <span class="hljs-string">'Daftar Todo'</span>)
+
+@section(<span class="hljs-string">'content'</span>)
+    &lt;h2&gt;Daftar Todo&lt;/h2&gt;
+
+    &lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">list</span>-<span class="hljs-title">group</span>"&gt;
+        @<span class="hljs-title">foreach</span>($<span class="hljs-title">todos</span> <span class="hljs-title">as</span> $<span class="hljs-title">todo</span>)
+            &lt;<span class="hljs-title">li</span> <span class="hljs-title">class</span>="<span class="hljs-title">list</span>-<span class="hljs-title">group</span>-<span class="hljs-title">item</span> <span class="hljs-title">d</span>-<span class="hljs-title">flex</span> <span class="hljs-title">justify</span>-<span class="hljs-title">content</span>-<span class="hljs-title">between</span> <span class="hljs-title">align</span>-<span class="hljs-title">items</span>-<span class="hljs-title">center</span>"&gt;
+                </span>{{ $todo-&gt;task }}
+                &lt;div&gt;
+                    &lt;form action=<span class="hljs-string">"{{ route('todos.show', $todo-&gt;id) }}"</span> method=<span class="hljs-string">"GET"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">d</span>-<span class="hljs-title">inline</span>"&gt;
+                        &lt;<span class="hljs-title">button</span> <span class="hljs-title">type</span>="<span class="hljs-title">submit</span>" <span class="hljs-title">class</span>="<span class="hljs-title">btn</span> <span class="hljs-title">btn</span>-<span class="hljs-title">info</span> <span class="hljs-title">btn</span>-<span class="hljs-title">sm</span>"&gt;<span class="hljs-title">Detail</span>&lt;/<span class="hljs-title">button</span>&gt;
+                    &lt;/<span class="hljs-title">form</span>&gt;
+                    &lt;<span class="hljs-title">form</span> <span class="hljs-title">action</span>="</span>{{ route(<span class="hljs-string">'todos.edit'</span>, $todo-&gt;id) }}<span class="hljs-string">" method="</span>GET<span class="hljs-string">" class="</span>d-inline<span class="hljs-string">"&gt;
+                        &lt;button type="</span>submit<span class="hljs-string">" class="</span>btn btn-warning btn-sm<span class="hljs-string">"&gt;Edit&lt;/button&gt;
+                    &lt;/form&gt;
+                    &lt;form action="</span>{{ route(<span class="hljs-string">'todos.destroy'</span>, $todo-&gt;id) }}<span class="hljs-string">" method="</span>POST<span class="hljs-string">" class="</span>d-inline<span class="hljs-string">"&gt;
+                        @csrf 
+                        @method('DELETE')
+                        &lt;button class="</span>btn btn-danger btn-sm<span class="hljs-string">"&gt;Hapus&lt;/button&gt;
+                    &lt;/form&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        @endforeach
+    &lt;/ul&gt;
+@endsection
+</span></div></code></pre>
+<ul>
+<li><code>create.blade.php</code>: Tampilan ini akan menampilkan formulir untuk menambah todo baru. kemudian isi dengan kode program seperti ini:</li>
+</ul>
+<pre class="hljs"><code><div>@extends(<span class="hljs-string">'layouts.app'</span>)
+
+@section(<span class="hljs-string">'title'</span>, <span class="hljs-string">'Buat Task Baru'</span>)
+
+@section(<span class="hljs-string">'content'</span>)
+    &lt;h2&gt;Buat Task Baru&lt;/h2&gt;
+
+    &lt;form action=<span class="hljs-string">"{{ route('todos.store') }}"</span> method=<span class="hljs-string">"POST"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">mt</span>-3"&gt;
+        @<span class="hljs-title">csrf</span>
+        &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">mb</span>-3"&gt;
+            &lt;<span class="hljs-title">label</span> <span class="hljs-title">for</span>="<span class="hljs-title">task</span>" <span class="hljs-title">class</span>="<span class="hljs-title">form</span>-<span class="hljs-title">label</span>"&gt;<span class="hljs-title">Nama</span> <span class="hljs-title">Task</span>&lt;/<span class="hljs-title">label</span>&gt;
+            &lt;<span class="hljs-title">input</span> <span class="hljs-title">type</span>="<span class="hljs-title">text</span>" <span class="hljs-title">name</span>="<span class="hljs-title">task</span>" <span class="hljs-title">id</span>="<span class="hljs-title">task</span>" <span class="hljs-title">class</span>="<span class="hljs-title">form</span>-<span class="hljs-title">control</span>" <span class="hljs-title">required</span>&gt;
+        &lt;/<span class="hljs-title">div</span>&gt;
+        &lt;<span class="hljs-title">button</span> <span class="hljs-title">type</span>="<span class="hljs-title">submit</span>" <span class="hljs-title">class</span>="<span class="hljs-title">btn</span> <span class="hljs-title">btn</span>-<span class="hljs-title">success</span>"&gt;<span class="hljs-title">Tambah</span> <span class="hljs-title">Task</span>&lt;/<span class="hljs-title">button</span>&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">href</span>="</span>{{ route(<span class="hljs-string">'todos.index'</span>) }}<span class="hljs-string">" class="</span>btn btn-secondary<span class="hljs-string">"&gt;Kembali ke Daftar&lt;/a&gt;
+    &lt;/form&gt;
+
+@endsection
+</span></div></code></pre>
+<ul>
+<li><code>edit.blade.php</code>: Tampilan ini akan menampilkan formulir untuk mengedit todo yang sudah ada.kemudian isi dengan kode program seperti ini:</li>
+</ul>
+<pre class="hljs"><code><div>@extends(<span class="hljs-string">'layouts.app'</span>)
+@section(<span class="hljs-string">'title'</span>, <span class="hljs-string">'Edit Task'</span>)
+
+@section(<span class="hljs-string">'content'</span>)
+    &lt;h2&gt;Edit Task&lt;/h2&gt;
+
+    &lt;form action=<span class="hljs-string">"{{ route('todos.update', $todo-&gt;id) }}"</span> method=<span class="hljs-string">"POST"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">mt</span>-3"&gt;
+        @<span class="hljs-title">csrf</span> 
+        @<span class="hljs-title">method</span>('<span class="hljs-title">PATCH</span>')
+        &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">mb</span>-3"&gt;
+            &lt;<span class="hljs-title">label</span> <span class="hljs-title">for</span>="<span class="hljs-title">task</span>" <span class="hljs-title">class</span>="<span class="hljs-title">form</span>-<span class="hljs-title">label</span>"&gt;<span class="hljs-title">Nama</span> <span class="hljs-title">Task</span>&lt;/<span class="hljs-title">label</span>&gt;
+            &lt;<span class="hljs-title">input</span> <span class="hljs-title">type</span>="<span class="hljs-title">text</span>" <span class="hljs-title">name</span>="<span class="hljs-title">task</span>" <span class="hljs-title">id</span>="<span class="hljs-title">task</span>" <span class="hljs-title">class</span>="<span class="hljs-title">form</span>-<span class="hljs-title">control</span>" <span class="hljs-title">value</span>="</span>{{ $todo-&gt;task }}<span class="hljs-string">" required&gt;
+        &lt;/div&gt;
+        &lt;button type="</span>submit<span class="hljs-string">" class="</span>btn btn-warning<span class="hljs-string">"&gt;Update Task&lt;/button&gt;
+        &lt;a href="</span>{{ route(<span class="hljs-string">'todos.index'</span>) }}<span class="hljs-string">" class="</span>btn btn-secondary<span class="hljs-string">"&gt;Kembali ke Daftar&lt;/a&gt;
+    &lt;/form&gt;
+
+@endsection
+</span></div></code></pre>
+<ul>
+<li><code>show.blade.php</code>: Tampilan ini akan menampilkan single todo.kemudian isi dengan kode program seperti ini:</li>
+</ul>
+<pre class="hljs"><code><div>@extends(<span class="hljs-string">'layouts.app'</span>)
+@section(<span class="hljs-string">'title'</span>, <span class="hljs-string">'Detail Task'</span>)
+@section(<span class="hljs-string">'content'</span>)
+    &lt;h2&gt;Detail Task&lt;/h2&gt;
+
+    &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">card</span> <span class="hljs-title">mt</span>-3"&gt;
+        &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">card</span>-<span class="hljs-title">body</span>"&gt;
+            &lt;<span class="hljs-title">h5</span> <span class="hljs-title">class</span>="<span class="hljs-title">card</span>-<span class="hljs-title">title</span>"&gt;</span>{{ $todo-&gt;task }}&lt;/h5&gt;
+            &lt;p <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">card</span>-<span class="hljs-title">text</span>"&gt;<span class="hljs-title">Status</span>: </span>{{ $todo-&gt;completed ? <span class="hljs-string">'Selesai'</span> : <span class="hljs-string">'Belum Selesai'</span> }}&lt;/p&gt;
+            &lt;a href=<span class="hljs-string">"{{ route('todos.edit', $todo-&gt;id) }}"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">btn</span> <span class="hljs-title">btn</span>-<span class="hljs-title">warning</span>"&gt;<span class="hljs-title">Edit</span>&lt;/<span class="hljs-title">a</span>&gt;
+            &lt;<span class="hljs-title">a</span> <span class="hljs-title">href</span>="</span>{{ route(<span class="hljs-string">'todos.index'</span>) }}<span class="hljs-string">" class="</span>btn btn-secondary<span class="hljs-string">"&gt;Kembali ke Daftar&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;  
+@endsection
+</span></div></code></pre>
+</li>
+<li>
+<p>Setelah membuat dan mengedit file blade untuk view, sekarang kita Jalankan aplikasi dengan <code>php artisan serve</code> dan coba kunjungi http://127.0.0.1:8000
+Tampilan nya <img src="Gambar/todo-list.png" alt="tampilan utama"></p>
+</li>
+</ul>
+<hr>
+<h2 id="3-hasil-dan-pembahasan">3. Hasil dan Pembahasan</h2>
+<ul>
+<li>Laravel 12 menyediakan ekosistem yang komprehensif untuk bekerja dengan database melalui kombinasi migrasi, seeder, dan Eloquent ORM. Migrasi memberikan cara yang aman dan mudah untuk mengelola perubahan skema database tanpa menulis SQL mentah. Seeder mempermudah pengisian data awal secara otomatis untuk kebutuhan pengujian.
+Sementara itu, Eloquent ORM menyederhanakan operasi CRUD dengan gaya berorientasi objek, menjadikannya lebih mudah dibaca dan dipelihara oleh pengembang.
+Dalam praktik pengembangan aplikasi skala besar, pemisahan antara Model, Entity, DTO, dan penggunaan Repository Pattern membantu menjaga struktur kode tetap modular dan terorganisir. Developer dapat mengubah logika data tanpa harus menyentuh bagian lain dari aplikasi, sehingga meningkatkan fleksibilitas dan skalabilitas sistem</li>
+</ul>
+<hr>
+<h2 id="4-kesimpulan">4. Kesimpulan</h2>
+<ul>
+<li>Kesimpulan dari praktikum ini adalah bahwa framework Laravel terbukti sangat efektif dalam menangani proses form submission secara aman, efisien, dan terstruktur. Melalui penerapan berbagai HTTP methods seperti POST, PUT/PATCH, dan DELETE, pengiriman data dapat dilakukan dengan cara yang sesuai dengan kebutuhan aplikasi. Laravel juga memiliki sistem CSRF Protection bawaan yang berfungsi melindungi aplikasi dari serangan Cross-Site Request Forgery dengan memastikan setiap permintaan berasal dari sumber yang sah.
+Selain itu, fitur validasi data di Laravel membantu memastikan bahwa input pengguna memenuhi aturan dan ketentuan yang berlaku, baik dari sisi format, tipe data, maupun kesesuaiannya dengan tabel di database. Praktikum ini juga menunjukkan bagaimana validasi kustom dan pesan error spesifik dapat meningkatkan kejelasan komunikasi dengan pengguna.
+Implementasi multi-step form memperlihatkan fleksibilitas Laravel dalam mengelola data yang dikumpulkan secara bertahap menggunakan session, sehingga proses input menjadi lebih teratur dan tidak membingungkan. Secara keseluruhan, praktikum ini berhasil memperlihatkan bagaimana Laravel dapat digunakan untuk membangun sistem form yang aman, interaktif, dan user-friendly, sekaligus menjaga kualitas serta keamanan data yang diproses.</li>
+</ul>
+<hr>
+<h2 id="5-referensi">5. Referensi</h2>
+<ul>
+<li>https://developerawam.com/artikel/detail/belajar-data-transfer-object-dto-di-laravel</li>
+<li>https://hackmd.io/@mohdrzu/ryIIM1a0ll</li>
+<li>https://buildwithangga.com/tips/mengenal-laravel-eloquent-pengertian-fungsi-dan-penggunaannya</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>laporan.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="laporan-modul-5-form-submission--data-validation">Laporan Modul 5: Form Submission &amp; Data Validation</h1>
+<p><strong>Mata Kuliah:</strong> Workshop Web Lanjut<br>
+<strong>Nama:</strong> Ilham Syahdienar<br>
+<strong>NIM:</strong> 2024573010029
+<strong>Kelas:</strong> TI-2C</p>
+<hr>
+<h2 id="abstrak">Abstrak</h2>
+<p>Laporan ini membahas tentang bagaimana cara membuat form submision yang menggunakan HTTP methods, apa itu csrf lalu bagaimana data validation di laravel digunakan untuk memastikan data yang di input sesuai dengan ketentuan yang ber;aku, seperti di tabel pada databasenya.</p>
+<hr>
+<h2 id="1-dasar-teori">1. Dasar Teori</h2>
+<ul>
+<li>Apa saja HTTP methods dalam form??
+<ul>
+<li>POST : Mengirim data baru (create)</li>
+<li>PUT/PATCH : Mengupdate data existing</li>
+<li>DELETE : Menghapus data</li>
+<li>GET : Mengambil data (tidak untuk form submission)</li>
+</ul>
+</li>
+<li>Cara kerja form submission bagaimana?
+<ul>
+<li>User mengisi form dan menekan submit</li>
+<li>Browser mengirim HTTP request ke route yang ditentukan</li>
+<li>Middleware memproses request (termasuk CSRF verification)</li>
+<li>Route mengarahkan ke controller method</li>
+<li>Controller memvalidasi data</li>
+<li>Jika valid: data diproses, jika tidak: error dikembalikan</li>
+<li>Response dikirim kembali ke user</li>
+</ul>
+</li>
+<li>Apa itu CSRF?
+<ul>
+<li>CSRF (Cross-Site Request Forgery) adalah jenis serangan di mana seorang hacker mencoba membuat pengguna yang terautentikasi melakukan aksi yang tidak diinginkan di website tanpa sepengetahuan mereka.</li>
+</ul>
+</li>
+<li>Validation Rules
+<ul>
+<li>Format untuk penulisan rules adalah:</li>
+<li>String Format: <code>'field' =&gt; 'required|email|max:255'</code></li>
+<li>Array Format: <code>'field' =&gt; ['required', 'email', 'max:255']</code></li>
+</ul>
+</li>
+<li>Kategori Validation Rules
+<ul>
+<li>Basic Rules:
+<ul>
+<li>required: Field wajib diisi</li>
+<li>nullable: Field boleh kosong</li>
+<li>filled: Jika ada, harus berisi nilai</li>
+<li>sometimes: Validasi hanya jika field ada</li>
+</ul>
+</li>
+<li>Type Validation
+<ul>
+<li>string: Harus string</li>
+<li>numeric: Harus angka</li>
+<li>integer: Harus integer</li>
+<li>boolean: Harus boolean</li>
+<li>array: Harus array</li>
+<li>file: Harus file upload</li>
+</ul>
+</li>
+<li>Size Validation
+<ul>
+<li>min:value: Minimum size (string length, numeric value, file size)</li>
+<li>max:value: Maximum size</li>
+<li>size:value: Exact size</li>
+<li>between:min,max: Rentang nilai</li>
+</ul>
+</li>
+<li>Database Rules
+<ul>
+<li>unique:table,column: Nilai harus unik di database</li>
+<li>exists:table,column: Nilai harus ada di database</li>
+</ul>
+</li>
+<li>Comparison Rules
+<ul>
+<li>confirmed: Field harus memiliki field _confirmation</li>
+<li>same:field: Harus sama dengan field lain</li>
+<li>different:field: Harus berbeda dari field lain</li>
+</ul>
+</li>
+<li>Conditional Validation
+<ul>
+<li>Validasi yang bergantung pada kondisi tertentu:</li>
+</ul>
+<pre class="hljs"><code><div>'discount' =&gt; 'required_if:is_sale,true', // wajib jika is_sale = true
+'reason' =&gt; 'required_unless:status,approved', // wajib kecuali status approved
+'backup_email' =&gt; 'required_with:phone', // wajib jika phone ada
+'notes' =&gt; 'required_without:description' // wajib jika description kosong
+``
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-langkah-langkah-praktikum">2. Langkah-Langkah Praktikum</h2>
+<ul>
+<li>
+<h5 id="21-praktikum-1---menangani-request-dan-response-view-di-laravel-12">2.1 Praktikum 1 - Menangani Request dan Response View di Laravel 12</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru dengan nama <code>form-app</code> di folder projects tempat menyimpan folder folder project pada pertemuan sebelumnya menggunakan vscode, buka git bash, dan masuk ke direktori projects:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel form-app</code></li>
+<li>masuk ke direktori form-app</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Buat Controller dengan nama controller:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller FormController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah membuat controller, selanjutnya definisikan route nya di routes/web.php, tambahkan seperti ini:</li>
+</ol>
+<pre class="hljs"><code><div>use App\Http\Controllers\FormController;
+Route::get('/form', [FormController::class, 'showForm'])-&gt;name('form.show');
+Route::post('/form', [FormController::class, 'handleForm'])-&gt;name('form.handle');
+Route::get('/result', [FormController::class, 'showResult'])-&gt;name('form.result');
+</div></code></pre>
+</li>
+<li>
+<ol start="4">
+<li>Selanjutnya kita akan buat metode untuk menangani logika form pada controller dengan cara masuk ke app/Http/Controllers/FormController.php lalu tambahkan code berikut:
+<img src="gambar/form-control.png" alt="kode-program"></li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>Di <code>resources/views</code> buat file baru dengan nama <code>form.blade.php</code>, lalu isi file tersebut dengan kode program seperti gambar di bawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Pengiriman Form&lt;/title&gt;
+        &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;container mt-5&quot;&gt;
+        &lt;h2&gt;Form Registrasi&lt;/h2&gt;
+        &lt;form method=&quot;POST&quot; action=&quot;{{ route('form.handle') }}&quot;&gt;
+            @csrf
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Nama&lt;/label&gt;
+                &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;form-control&quot; value=&quot;{{ old('name') }}&quot;&gt;
+                @error('name') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Email&lt;/label&gt;
+                &lt;input type=&quot;email&quot; name=&quot;email&quot; class=&quot;form-control&quot; value=&quot;{{ old('email') }}&quot;&gt;
+                @error('email') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Umur&lt;/label&gt;
+                &lt;input type=&quot;number&quot; name=&quot;age&quot; class=&quot;form-control&quot; value=&quot;{{ old('age') }}&quot;&gt;
+                @error('age') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Password&lt;/label&gt;
+                &lt;input type=&quot;password&quot; name=&quot;password&quot; class=&quot;form-control&quot;&gt;
+                @error('password') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Jenis Kelamin&lt;/label&gt;&lt;br&gt;
+                &lt;div class=&quot;form-check form-check-inline&quot;&gt;
+                    &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt; Laki-laki
+                &lt;/div&gt;
+                &lt;div class=&quot;form-check form-check-inline&quot;&gt;
+                    &lt;input class=&quot;form-check-input&quot; type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt; Perempuan
+                &lt;/div&gt;
+                @error('gender') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Role&lt;/label&gt;
+                &lt;select name=&quot;role&quot; class=&quot;form-select&quot;&gt;
+                    &lt;option value=&quot;&quot;&gt;-- Pilih Role --&lt;/option&gt;
+                    &lt;option value=&quot;user&quot;&gt;User&lt;/option&gt;
+                    &lt;option value=&quot;admin&quot;&gt;Admin&lt;/option&gt;
+                &lt;/select&gt;
+                @error('role') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;label&gt;Bio&lt;/label&gt;
+                &lt;textarea name=&quot;bio&quot; class=&quot;form-control&quot;&gt;{{ old('bio') }}&lt;/textarea&gt;
+                @error('bio') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;div class=&quot;form-check mb-3&quot;&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;confirm&quot; name=&quot;confirm&quot; class=&quot;form-check-input&quot;&gt;
+                &lt;label class=&quot;form-check-label&quot; for=&quot;confirm&quot;&gt;Saya konfirmasi informasi sudah benar&lt;/label&gt;
+                @error('confirm') &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt; @enderror
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot; id=&quot;submitBtn&quot; disabled&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+
+        &lt;script&gt;
+            document.getElementById('confirm').addEventListener('change', function() {
+                document.getElementById('submitBtn').disabled = !this.checked;
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="6">
+<li>Masih di <code>resources/views</code> buat file baru dengan nama <code>result.blade.php</code>, file ini akan menampilkan hasil form yang telahdiinput oleh user. Lalu isi file tersebut dengan kode program seperti gambar di bawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hasil Form&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;container mt-5&quot;&gt;
+        &lt;h2&gt;Data Form yang dikirim&lt;/h2&gt;
+        @if ($data)
+            &lt;ul class=&quot;list-group&quot;&gt;
+                @foreach ($data as $key =&gt; $value)
+                    &lt;li class=&quot;list-group-item&quot;&gt;&lt;Strong&gt;{{ ucfirst($key) }}:&lt;/Strong&gt; {{ $value }}&lt;/li&gt;
+                @endforeach
+            &lt;/ul&gt;
+        @else
+            &lt;p&gt;Tidak ada data tersedia&lt;/p&gt;
+        @endif
+    &lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="7">
+<li>Jalankan project laravel yang kita buat dengan mengetik <code>php artisan serve</code> diterminal atau git bash</li>
+</ol>
+</li>
+<li>
+<ol start="8">
+<li>Buka browser lalu ketik <code>http:localhost:8000/form</code>, maka nanti akan keluar hasil yang sudah kita coba seperti gambar dibawah ini:
+<img src="gambar/out-prak1.png" alt="tampilan localhost">
+lalu jika sudah mengisi formnya dan kita akan menekan tombol submit maka akan menampilkan data yang dikirim:
+<img src="gambar/result-prak1.png" alt="gambar">
+jika kita mencoba mengirim form tanpa mengisi field yang wajib maka akan melihat error validasi, dan juga jika mencoba mengirim tanpa mencentang checkbox maka tombol submit tidak akan bisa ditekan sampai kita mencentang checkbox.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="22-praktikum-2-%E2%80%93-validasi-kustom-dan-pesan-error-di-laravel-12">2.2 Praktikum 2 – Validasi Kustom dan Pesan Error di Laravel 12</h5>
+<ul>
+<li>
+<ol>
+<li>Buka project yang sudah dibuat pada praktikum sebelumnya, yaitu <code>form-app</code></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Selanjutnya kita buat controller baru, dengan nama RegisterController, untuk membuat controller tersebut kita dapat gunakan perintah:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller RegisterController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Lalu pada file controller yang sudah dibuat yaitu RegisterController, tambahkan logika dengan kode program seperti dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>    &lt;?php
+
+    namespace App\Http\Controllers;
+
+    use Illuminate\Http\Request;
+
+    class RegisterController extends Controller
+    {
+        public function showForm()
+        {
+            return view('register');
+        }
+
+        public function handleform(Request $request)
+        {
+            $customMessages = [
+                'name.required' =&gt; 'kami perlu tahu nama anda',
+                'email.required' =&gt; 'Email anda penting bagi kami',
+                'email.email' =&gt; 'hmm...Itu tidak terlihat seperti email yang valid',
+                'password.required' =&gt; 'jangan lupa untuk set password',
+                'password.min' =&gt; 'password harus minimal :min karakter',
+                'username.regex' =&gt; 'username hanya boleh berisi huruf dan angka',
+            ];
+
+            $request-&gt;validate([
+                'name' =&gt; 'required|string|max:100',
+                'email' =&gt; 'required|email',
+                'username' =&gt; ['required', 'regex:/^[a-z A-Z 0-9]+$/'],
+                'password' =&gt; 'required|min:6',
+            ], $customMessages);
+
+            return redirect()-&gt;route('register.show')-&gt;with('success', 'registrasi berhasil');
+        }
+    }
+    
+</div></code></pre>
+<ul>
+<li>
+<ol start="4">
+<li>Selanjutnya kita tambahkan route RegisterController di routes/web.php, ikuti seperti gambar dibawah ini:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>use App\Http\Controllers\RegisterController;
+
+Route::get('/register', [RegisterController::class, 'showForm'])-&gt;name('register.show');
+Route::post('/register', [RegisterController::class, 'handleForm'])-&gt;name('register.handle');
+
+</div></code></pre>
+<ul>
+<li>
+<ol start="5">
+<li>Setelah menambabhkan rute RegisterController di routes/web.php, kita buat file di folder <code>resources/views</code> buat file <code>Register.blade.php</code>, dan isi file tersebut dengan kode program pada dibawah ini:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Form Register&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;container mt-5&quot;&gt;
+    &lt;h2&gt;Contoh Validasi Custom&lt;/h2&gt;
+
+    @if (session('success'))
+        &lt;div class=&quot;alert alert-success&quot;&gt;
+            {{ session('success') }}
+        &lt;/div&gt;
+    @endif
+
+    &lt;form  method=&quot;POST&quot; action=&quot;{{ route('register.handle')}}&quot;&gt;
+        @csrf
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;name&quot;&gt;Nama lengkap&lt;/label&gt;
+            &lt;input name=&quot;name&quot; class=&quot;form-control&quot; value=&quot;{{ old('name') }}&quot;&gt;
+            @error('name')
+                &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt;
+            @enderror
+        &lt;/div&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;email&quot;&gt;Alamat Email&lt;/label&gt;
+            &lt;input name=&quot;email&quot; class=&quot;form-control&quot; value=&quot;{{ old('email')}}&quot;&gt;
+            @error('email') 
+                &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt;
+            @enderror
+        &lt;/div&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;username&quot;&gt;Username&lt;/label&gt;
+            &lt;input name=&quot;username&quot; class=&quot;form-control&quot; value=&quot;{{ old('username')}}&quot;&gt;
+            @error('username') 
+                &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt;
+            @enderror
+        &lt;/div&gt;
+        &lt;div class=&quot;mb-3&quot;&gt;
+            &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;
+            &lt;input name=&quot;password&quot; type=&quot;password&quot; class=&quot;form-control&quot;&gt;
+            @error('password') 
+                &lt;div class=&quot;text-danger&quot;&gt;{{ $message }}&lt;/div&gt;
+            @enderror
+        &lt;/div&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Register&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+</li>
+<li>
+<ol start="6">
+<li>Setelah melakukan langkah-langkah diatas, maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>, masuk ke:<code>http://127.0.0.1:8000/register</code>
+setelah itu buka browser dan akan keluar tampilan seperti gambar dibawah ini:
+<img src="gambar/register-prak-2.png" alt="Output prak2"></li>
+</ol>
+<ul>
+<li>Lakukan percobaan seperti dibawah untuk mengetest aturan dan definisi yang digunakan di kode program:
+<ul>
+<li>Biarkan field kosong</li>
+<li>Masukkan email tidak valid</li>
+<li>Ketik non-alphanumeric di username</li>
+<li>Gunakan password pendek</li>
+</ul>
+</li>
+<li>Maka akan menampilkan text error seperti ini:
+<img src="gambar/prak-2-salah.png" alt="Output prak2"></li>
+<li>Tetapi jika sesuai dengan aturan dan definisi maka setelah menekan tombol register akan keluar notifikasi yang menyatakan regisrasi berhasil</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h5 id="23-praktikum-3---multi-step-form-submission-dengan-session-data">2.3 Praktikum 3 - Multi-Step Form Submission dengan Session Data</h5>
+<ul>
+<li>
+<ol>
+<li>Buat project baru dengan nama multistep-form-app di folder projects tempat menyimpan folder folder project pada pertemuan sebelumnya menggunakan vscode, buka git bash, dan masuk ke direktori projects, lalu perintah untuk membuat project baru:</li>
+</ol>
+<ul>
+<li><code>composer create-project laravel/laravel multistep-form-app</code></li>
+<li>masuk ke direktori modul-4-laravel-ui</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Buat Controller dengan nama controller:</li>
+</ol>
+<ul>
+<li><code>php artisan make:controller MultiStepFormController</code></li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Setelah membuat controller, selanjutnya definisikan route nya di routes/web.php, tambahkan seperti ini:</li>
+</ol>
+<pre class="hljs"><code><div>&lt;?php
+
+use App\Http\Controllers\MultiStepFormController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/multistep', [MultiStepFormController::class, 'showStep1'])-&gt;name('multistep.step1');
+Route::post('/multistep/step1', [MultiStepFormController::class, 'storeStep1'])-&gt;name('multistep.storeStep1');
+Route::get('/multistep/step2', [MultiStepFormController::class, 'showStep2'])-&gt;name('multistep.step2');
+Route::post('/multistep/step2', [MultiStepFormController::class, 'storeStep2'])-&gt;name('multistep.storeStep2');
+Route::get('/multistep/step3', [MultiStepFormController::class, 'showStep3'])-&gt;name('multistep.step3');
+Route::post('/multistep/step3', [MultiStepFormController::class, 'storeStep3'])-&gt;name('multistep.storeStep3');
+Route::get('/multistep/summary', [MultiStepFormController::class, 'showSummary'])-&gt;name('multistep.summary');
+Route::post('/multistep/complete', [MultiStepFormController::class, 'complete'])-&gt;name('multistep.complete');
+
+</div></code></pre>
+</li>
+<li>
+<ol start="4">
+<li>Selanjutnya kita akan mengupdate data pada controller dengan cara masuk ke app/Http/Controllers/MultiStepFormController.php lalu tambahkan code berikut:</li>
+</ol>
+<pre class="hljs"><code><div>   &lt;?php
+
+    namespace App\Http\Controllers;
+
+    use Illuminate\Http\Request;
+
+    class MultiStepFormController extends Controller
+    {
+        // Step 1 - Informasi Pribadi
+        public function showStep1()
+        {
+            return view('multistep.step1', [
+                'step' =&gt; 1,
+                'progress' =&gt; 0
+            ]);
+        }
+
+        public function storeStep1(Request $request)
+        {
+            $validated = $request-&gt;validate([
+                'full_name' =&gt; 'required|string|max:100',
+                'email' =&gt; 'required|email',
+                'phone' =&gt; 'required|string|max:15',
+                'address' =&gt; 'required|string|max:200',
+            ]);
+
+            // Simpan data ke session
+            session(['step1_data' =&gt; $validated]);
+
+            return redirect()-&gt;route('multistep.step2');
+        }
+
+        // Step 2 - Informasi Pendidikan
+        public function showStep2()
+        {
+            if (!session('step1_data')) {
+                return redirect()-&gt;route('multistep.step1');
+            }
+
+            return view('multistep.step2', [
+                'step' =&gt; 2,
+                'progress' =&gt; 33
+            ]);
+        }
+
+        public function storeStep2(Request $request)
+        {
+            $validated = $request-&gt;validate([
+                'education' =&gt; 'required|string|max:50',
+                'institution' =&gt; 'required|string|max:100',
+                'graduation_year' =&gt; 'required|integer|min:1900|max:' . date('Y'),
+                'major' =&gt; 'required|string|max:100',
+            ]);
+
+            session(['step2_data' =&gt; $validated]);
+
+            return redirect()-&gt;route('multistep.step3');
+        }
+
+        // Step 3 - Pengalaman Kerja
+        public function showStep3()
+        {
+            if (!session('step1_data') || !session('step2_data')) {
+                return redirect()-&gt;route('multistep.step1');
+            }
+
+            return view('multistep.step3', [
+                'step' =&gt; 3,
+                'progress' =&gt; 66
+            ]);
+        }
+
+        public function storeStep3(Request $request)
+        {
+            $validated = $request-&gt;validate([
+                'current_job' =&gt; 'nullable|string|max:100',
+                'company' =&gt; 'nullable|string|max:100',
+                'experience_years' =&gt; 'required|integer|min:0|max:50',
+                'skills' =&gt; 'required|string|max:200',
+            ]);
+
+            session(['step3_data' =&gt; $validated]);
+
+            return redirect()-&gt;route('multistep.summary');
+        }
+
+        // Summary - Ringkasan Data
+        public function showSummary()
+        {
+            $step1Data = session('step1_data');
+            $step2Data = session('step2_data');
+            $step3Data = session('step3_data');
+
+            if (!$step1Data || !$step2Data || !$step3Data) {
+                return redirect()-&gt;route('multistep.step1');
+            }
+
+            return view('multistep.summary', [
+                'step' =&gt; 4,
+                'progress' =&gt; 100,
+                'step1Data' =&gt; $step1Data,
+                'step2Data' =&gt; $step2Data,
+                'step3Data' =&gt; $step3Data
+            ]);
+        }
+
+        // Complete - Proses Final
+        public function complete(Request $request)
+        {
+            // Di sini Anda bisa menyimpan data ke database
+            // Untuk demo, kita hanya akan menampilkan pesan sukses
+
+            $allData = [
+                'personal' =&gt; session('step1_data'),
+                'education' =&gt; session('step2_data'),
+                'experience' =&gt; session('step3_data')
+            ];
+
+            // Hapus session data
+            $request-&gt;session()-&gt;forget(['step1_data', 'step2_data', 'step3_data']);
+
+            return view('multistep.complete', [
+                'data' =&gt; $allData
+            ]);
+        }
+    }
+
+</div></code></pre>
+</li>
+<li>
+<ol start="5">
+<li>Selanjutnya kita akan membuat layout dasar, di <code>resources/views/</code> buat direktori baru yaitu <code>layouts</code>, lalu di direktori tersebut buat file app.blade.php, dan isikan kode berikut:</li>
+</ol>
+</li>
+</ul>
+<pre class="hljs"><code><div>    &lt;!DOCTYPE html&gt;
+    &lt;html lang=&quot;id&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;title&gt;@yield('title', 'Multi-Step Form')&lt;/title&gt;
+        &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+        &lt;style&gt;
+            .step-progress {
+                margin-bottom: 30px;
+            }
+            .step-item {
+                text-align: center;
+                position: relative;
+            }
+            .step-item .step-number {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #e9ecef;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 10px;
+                font-weight: bold;
+            }
+            .step-item.active .step-number {
+                background: #007bff;
+                color: white;
+            }
+            .step-item.completed .step-number {
+                background: #28a745;
+                color: white;
+            }
+            .step-line {
+                position: absolute;
+                top: 20px;
+                left: 50%;
+                width: 100%;
+                height: 2px;
+                background: #e9ecef;
+                z-index: -1;
+            }
+            .form-step {
+                display: none;
+            }
+            .form-step.active {
+                display: block;
+            }
+            .card {
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav class=&quot;navbar navbar-dark bg-dark&quot;&gt;
+            &lt;div class=&quot;container&quot;&gt;
+                &lt;span class=&quot;navbar-brand mb-0 h1&quot;&gt;Multi-Step Form Demo&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/nav&gt;
+
+        &lt;div class=&quot;container mt-4&quot;&gt;
+            @yield('content')
+        &lt;/div&gt;
+
+        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</div></code></pre>
+<ul>
+<li>
+<ol start="6">
+<li>Buat Views untuk setiap step by step, dengan cara buat direktori baru <code>multistep</code> di <code>resources/views/</code> lalu buat file-file blade di bawah ini:</li>
+</ol>
+<ul>
+<li>step1.blade.php</li>
+<li>step2.blade.php</li>
+<li>step3.blade.php</li>
+<li>summary.blade.php</li>
+<li>complete.blade.php</li>
+</ul>
+</li>
+<li>
+<ol start="7">
+<li>setelah membuat view blade yang dibutuhkan, selanjutnya kita akan mengedit atau mengisi file file tersebut dengan kode kode program yang disesuaikan dengan kebutuhan</li>
+</ol>
+<ul>
+<li>step1.blade.php</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'Step 1 - Informasi Pribadi')
+
+@section('content')
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+    &lt;div class=&quot;col-md-8&quot;&gt;
+        &lt;!-- Progress Bar --&gt;
+        &lt;div class=&quot;step-progress&quot;&gt;
+            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-3 step-item active&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;1&lt;/div&gt;
+                    &lt;div&gt;Informasi Pribadi&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;2&lt;/div&gt;
+                    &lt;div&gt;Pendidikan&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;3&lt;/div&gt;
+                    &lt;div&gt;Pengalaman&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;4&lt;/div&gt;
+                    &lt;div&gt;Ringkasan&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;h4 class=&quot;mb-0&quot;&gt;Step 1: Informasi Pribadi&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;form method=&quot;POST&quot; action=&quot;{{ route('multistep.storeStep1') }}&quot;&gt;
+                    @csrf
+                    
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;full_name&quot; class=&quot;form-label&quot;&gt;Nama Lengkap *&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; class=&quot;form-control @error('full_name') is-invalid @enderror&quot; 
+                                id=&quot;full_name&quot; name=&quot;full_name&quot; 
+                                value=&quot;{{ old('full_name', session('step1_data.full_name') ?? '') }}&quot; 
+                                required&gt;
+                            @error('full_name')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;email&quot; class=&quot;form-label&quot;&gt;Email *&lt;/label&gt;
+                            &lt;input type=&quot;email&quot; class=&quot;form-control @error('email') is-invalid @enderror&quot; 
+                                id=&quot;email&quot; name=&quot;email&quot; 
+                                value=&quot;{{ old('email', session('step1_data.email') ?? '') }}&quot; 
+                                required&gt;
+                            @error('email')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;phone&quot; class=&quot;form-label&quot;&gt;Nomor Telepon *&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; class=&quot;form-control @error('phone') is-invalid @enderror&quot; 
+                                id=&quot;phone&quot; name=&quot;phone&quot; 
+                                value=&quot;{{ old('phone', session('step1_data.phone') ?? '') }}&quot; 
+                                required&gt;
+                            @error('phone')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;address&quot; class=&quot;form-label&quot;&gt;Alamat *&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; class=&quot;form-control @error('address') is-invalid @enderror&quot; 
+                                id=&quot;address&quot; name=&quot;address&quot; 
+                                value=&quot;{{ old('address', session('step1_data.address') ?? '') }}&quot; 
+                                required&gt;
+                            @error('address')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+                        &lt;div&gt;&lt;/div&gt; &lt;!-- Spacer --&gt;
+                        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Lanjut ke Step 2 &lt;i class=&quot;fas fa-arrow-right ms-2&quot;&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>step2.blade.php</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'Step 2 - Informasi Pendidikan')
+
+@section('content')
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+    &lt;div class=&quot;col-md-8&quot;&gt;
+        &lt;!-- Progress Bar --&gt;
+        &lt;div class=&quot;step-progress&quot;&gt;
+            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-3 step-item completed&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;✓&lt;/div&gt;
+                    &lt;div&gt;Informasi Pribadi&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item active&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;2&lt;/div&gt;
+                    &lt;div&gt;Pendidikan&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;3&lt;/div&gt;
+                    &lt;div&gt;Pengalaman&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;4&lt;/div&gt;
+                    &lt;div&gt;Ringkasan&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;h4 class=&quot;mb-0&quot;&gt;Step 2: Informasi Pendidikan&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;form method=&quot;POST&quot; action=&quot;{{ route('multistep.storeStep2') }}&quot;&gt;
+                    @csrf
+                    
+                    &lt;div class=&quot;mb-3&quot;&gt;
+                        &lt;label for=&quot;education&quot; class=&quot;form-label&quot;&gt;Tingkat Pendidikan *&lt;/label&gt;
+                        &lt;select class=&quot;form-select @error('education') is-invalid @enderror&quot; 
+                                id=&quot;education&quot; name=&quot;education&quot; required&gt;
+                            &lt;option value=&quot;&quot;&gt;Pilih Tingkat Pendidikan&lt;/option&gt;
+                            &lt;option value=&quot;SMA&quot; {{ old('education', session('step2_data.education') ?? '') == 'SMA' ? 'selected' : '' }}&gt;SMA&lt;/option&gt;
+                            &lt;option value=&quot;D3&quot; {{ old('education', session('step2_data.education') ?? '') == 'D3' ? 'selected' : '' }}&gt;D3&lt;/option&gt;
+                            &lt;option value=&quot;S1&quot; {{ old('education', session('step2_data.education') ?? '') == 'S1' ? 'selected' : '' }}&gt;S1&lt;/option&gt;
+                            &lt;option value=&quot;S2&quot; {{ old('education', session('step2_data.education') ?? '') == 'S2' ? 'selected' : '' }}&gt;S2&lt;/option&gt;
+                            &lt;option value=&quot;S3&quot; {{ old('education', session('step2_data.education') ?? '') == 'S3' ? 'selected' : '' }}&gt;S3&lt;/option&gt;
+                        &lt;/select&gt;
+                        @error('education')
+                            &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                        @enderror
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-8 mb-3&quot;&gt;
+                            &lt;label for=&quot;institution&quot; class=&quot;form-label&quot;&gt;Nama Institusi *&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; class=&quot;form-control @error('institution') is-invalid @enderror&quot; 
+                                id=&quot;institution&quot; name=&quot;institution&quot; 
+                                value=&quot;{{ old('institution', session('step2_data.institution') ?? '') }}&quot; 
+                                required&gt;
+                            @error('institution')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;col-md-4 mb-3&quot;&gt;
+                            &lt;label for=&quot;graduation_year&quot; class=&quot;form-label&quot;&gt;Tahun Lulus *&lt;/label&gt;
+                            &lt;input type=&quot;number&quot; class=&quot;form-control @error('graduation_year') is-invalid @enderror&quot; 
+                                id=&quot;graduation_year&quot; name=&quot;graduation_year&quot; 
+                                value=&quot;{{ old('graduation_year', session('step2_data.graduation_year') ?? '') }}&quot; 
+                                min=&quot;1900&quot; max=&quot;{{ date('Y') }}&quot; required&gt;
+                            @error('graduation_year')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;mb-3&quot;&gt;
+                        &lt;label for=&quot;major&quot; class=&quot;form-label&quot;&gt;Jurusan *&lt;/label&gt;
+                        &lt;input type=&quot;text&quot; class=&quot;form-control @error('major') is-invalid @enderror&quot; 
+                            id=&quot;major&quot; name=&quot;major&quot; 
+                            value=&quot;{{ old('major', session('step2_data.major') ?? '') }}&quot; 
+                            required&gt;
+                        @error('major')
+                            &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                        @enderror
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+                        &lt;a href=&quot;{{ route('multistep.step1') }}&quot; class=&quot;btn btn-secondary&quot;&gt;
+                            &lt;i class=&quot;fas fa-arrow-left me-2&quot;&gt;&lt;/i&gt;Kembali
+                        &lt;/a&gt;
+                        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Lanjut ke Step 3 &lt;i class=&quot;fas fa-arrow-right ms-2&quot;&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>step3.blade.php</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'Step 3 - Pengalaman Kerja')
+
+@section('content')
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+    &lt;div class=&quot;col-md-8&quot;&gt;
+        &lt;!-- Progress Bar --&gt;
+        &lt;div class=&quot;step-progress&quot;&gt;
+            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-3 step-item completed&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;✓&lt;/div&gt;
+                    &lt;div&gt;Informasi Pribadi&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item completed&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;✓&lt;/div&gt;
+                    &lt;div&gt;Pendidikan&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item active&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;3&lt;/div&gt;
+                    &lt;div&gt;Pengalaman&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;4&lt;/div&gt;
+                    &lt;div&gt;Ringkasan&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;h4 class=&quot;mb-0&quot;&gt;Step 3: Pengalaman Kerja&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;form method=&quot;POST&quot; action=&quot;{{ route('multistep.storeStep3') }}&quot;&gt;
+                    @csrf
+                    
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;current_job&quot; class=&quot;form-label&quot;&gt;Pekerjaan Saat Ini&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; class=&quot;form-control @error('current_job') is-invalid @enderror&quot; 
+                                id=&quot;current_job&quot; name=&quot;current_job&quot; 
+                                value=&quot;{{ old('current_job', session('step3_data.current_job') ?? '') }}&quot;&gt;
+                            @error('current_job')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                        
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;company&quot; class=&quot;form-label&quot;&gt;Perusahaan&lt;/label&gt;
+                            &lt;input type=&quot;text&quot; class=&quot;form-control @error('company') is-invalid @enderror&quot; 
+                                id=&quot;company&quot; name=&quot;company&quot; 
+                                value=&quot;{{ old('company', session('step3_data.company') ?? '') }}&quot;&gt;
+                            @error('company')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-6 mb-3&quot;&gt;
+                            &lt;label for=&quot;experience_years&quot; class=&quot;form-label&quot;&gt;Pengalaman Kerja (Tahun) *&lt;/label&gt;
+                            &lt;input type=&quot;number&quot; class=&quot;form-control @error('experience_years') is-invalid @enderror&quot; 
+                                id=&quot;experience_years&quot; name=&quot;experience_years&quot; 
+                                value=&quot;{{ old('experience_years', session('step3_data.experience_years') ?? '') }}&quot; 
+                                min=&quot;0&quot; max=&quot;50&quot; required&gt;
+                            @error('experience_years')
+                                &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                            @enderror
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;mb-3&quot;&gt;
+                        &lt;label for=&quot;skills&quot; class=&quot;form-label&quot;&gt;Keahlian/Keterampilan *&lt;/label&gt;
+                        &lt;textarea class=&quot;form-control @error('skills') is-invalid @enderror&quot; 
+                                id=&quot;skills&quot; name=&quot;skills&quot; rows=&quot;3&quot; 
+                                placeholder=&quot;Contoh: PHP, Laravel, JavaScript, MySQL...&quot; 
+                                required&gt;{{ old('skills', session('step3_data.skills') ?? '') }}&lt;/textarea&gt;
+                        @error('skills')
+                            &lt;div class=&quot;invalid-feedback&quot;&gt;{{ $message }}&lt;/div&gt;
+                        @enderror
+                        &lt;div class=&quot;form-text&quot;&gt;Pisahkan setiap keahlian dengan koma&lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+                        &lt;a href=&quot;{{ route('multistep.step2') }}&quot; class=&quot;btn btn-secondary&quot;&gt;
+                            &lt;i class=&quot;fas fa-arrow-left me-2&quot;&gt;&lt;/i&gt;Kembali
+                        &lt;/a&gt;
+                        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;
+                            Lihat Ringkasan &lt;i class=&quot;fas fa-arrow-right ms-2&quot;&gt;&lt;/i&gt;
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>summary.blade.php</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'Ringkasan Data')
+
+@section('content')
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+    &lt;div class=&quot;col-md-8&quot;&gt;
+        &lt;!-- Progress Bar --&gt;
+        &lt;div class=&quot;step-progress&quot;&gt;
+            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-3 step-item completed&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;✓&lt;/div&gt;
+                    &lt;div&gt;Informasi Pribadi&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item completed&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;✓&lt;/div&gt;
+                    &lt;div&gt;Pendidikan&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item completed&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;✓&lt;/div&gt;
+                    &lt;div&gt;Pengalaman&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-3 step-item active&quot;&gt;
+                    &lt;div class=&quot;step-number&quot;&gt;4&lt;/div&gt;
+                    &lt;div&gt;Ringkasan&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;div class=&quot;card-header bg-success text-white&quot;&gt;
+                &lt;h4 class=&quot;mb-0&quot;&gt;Ringkasan Data Anda&lt;/h4&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;!-- Informasi Pribadi --&gt;
+                &lt;div class=&quot;mb-4&quot;&gt;
+                    &lt;h5 class=&quot;border-bottom pb-2&quot;&gt;
+                        &lt;i class=&quot;fas fa-user me-2&quot;&gt;&lt;/i&gt;Informasi Pribadi
+                        &lt;a href=&quot;{{ route('multistep.step1') }}&quot; class=&quot;btn btn-sm btn-outline-primary float-end&quot;&gt;Edit&lt;/a&gt;
+                    &lt;/h5&gt;
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Nama Lengkap:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step1Data['full_name'] }}
+                        &lt;/div&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Email:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step1Data['email'] }}
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;row mt-2&quot;&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Telepon:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step1Data['phone'] }}
+                        &lt;/div&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Alamat:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step1Data['address'] }}
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Informasi Pendidikan --&gt;
+                &lt;div class=&quot;mb-4&quot;&gt;
+                    &lt;h5 class=&quot;border-bottom pb-2&quot;&gt;
+                        &lt;i class=&quot;fas fa-graduation-cap me-2&quot;&gt;&lt;/i&gt;Informasi Pendidikan
+                        &lt;a href=&quot;{{ route('multistep.step2') }}&quot; class=&quot;btn btn-sm btn-outline-primary float-end&quot;&gt;Edit&lt;/a&gt;
+                    &lt;/h5&gt;
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-4&quot;&gt;
+                            &lt;strong&gt;Tingkat Pendidikan:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step2Data['education'] }}
+                        &lt;/div&gt;
+                        &lt;div class=&quot;col-md-4&quot;&gt;
+                            &lt;strong&gt;Institusi:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step2Data['institution'] }}
+                        &lt;/div&gt;
+                        &lt;div class=&quot;col-md-4&quot;&gt;
+                            &lt;strong&gt;Tahun Lulus:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step2Data['graduation_year'] }}
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;row mt-2&quot;&gt;
+                        &lt;div class=&quot;col-12&quot;&gt;
+                            &lt;strong&gt;Jurusan:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step2Data['major'] }}
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Pengalaman Kerja --&gt;
+                &lt;div class=&quot;mb-4&quot;&gt;
+                    &lt;h5 class=&quot;border-bottom pb-2&quot;&gt;
+                        &lt;i class=&quot;fas fa-briefcase me-2&quot;&gt;&lt;/i&gt;Pengalaman Kerja
+                        &lt;a href=&quot;{{ route('multistep.step3') }}&quot; class=&quot;btn btn-sm btn-outline-primary float-end&quot;&gt;Edit&lt;/a&gt;
+                    &lt;/h5&gt;
+                    &lt;div class=&quot;row&quot;&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Pekerjaan Saat Ini:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step3Data['current_job'] ?? 'Tidak disebutkan' }}
+                        &lt;/div&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Perusahaan:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step3Data['company'] ?? 'Tidak disebutkan' }}
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;row mt-2&quot;&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Pengalaman Kerja:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step3Data['experience_years'] }} tahun
+                        &lt;/div&gt;
+                        &lt;div class=&quot;col-md-6&quot;&gt;
+                            &lt;strong&gt;Keahlian:&lt;/strong&gt;&lt;br&gt;
+                            {{ $step3Data['skills'] }}
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;alert alert-info&quot;&gt;
+                    &lt;i class=&quot;fas fa-info-circle me-2&quot;&gt;&lt;/i&gt;
+                    &lt;strong&gt;Perhatian:&lt;/strong&gt; Pastikan semua data sudah benar sebelum mengirim.
+                &lt;/div&gt;
+
+                &lt;form method=&quot;POST&quot; action=&quot;{{ route('multistep.complete') }}&quot;&gt;
+                    @csrf
+                    &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+                        &lt;a href=&quot;{{ route('multistep.step3') }}&quot; class=&quot;btn btn-secondary&quot;&gt;
+                            &lt;i class=&quot;fas fa-arrow-left me-2&quot;&gt;&lt;/i&gt;Kembali
+                        &lt;/a&gt;
+                        &lt;button type=&quot;submit&quot; class=&quot;btn btn-success&quot;&gt;
+                            &lt;i class=&quot;fas fa-check me-2&quot;&gt;&lt;/i&gt;Kirim Data
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+<ul>
+<li>complete.blade.php</li>
+</ul>
+<pre class="hljs"><code><div>@extends('layouts.app')
+
+@section('title', 'Pendaftaran Selesai')
+
+@section('content')
+&lt;div class=&quot;row justify-content-center&quot;&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;
+        &lt;div class=&quot;card text-center&quot;&gt;
+            &lt;div class=&quot;card-body py-5&quot;&gt;
+                &lt;div class=&quot;mb-4&quot;&gt;
+                    &lt;i class=&quot;fas fa-check-circle text-success&quot; style=&quot;font-size: 4rem;&quot;&gt;&lt;/i&gt;
+                &lt;/div&gt;
+                &lt;h2 class=&quot;card-title text-success mb-3&quot;&gt;Pendaftaran Berhasil!&lt;/h2&gt;
+                &lt;p class=&quot;card-text lead mb-4&quot;&gt;
+                    Terima kasih telah melengkapi formulir pendaftaran. Data Anda telah berhasil disimpan.
+                &lt;/p&gt;
+                
+                &lt;div class=&quot;alert alert-info text-start&quot;&gt;
+                    &lt;h6&gt;&lt;i class=&quot;fas fa-envelope me-2&quot;&gt;&lt;/i&gt;Informasi Penting:&lt;/h6&gt;
+                    &lt;ul class=&quot;mb-0&quot;&gt;
+                        &lt;li&gt;Anda akan menerima email konfirmasi dalam 24 jam&lt;/li&gt;
+                        &lt;li&gt;Proses verifikasi membutuhkan waktu 2-3 hari kerja&lt;/li&gt;
+                        &lt;li&gt;Tim kami akan menghubungi Anda untuk langkah selanjutnya&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;mt-4&quot;&gt;
+                    &lt;a href=&quot;{{ route('multistep.step1') }}&quot; class=&quot;btn btn-primary me-2&quot;&gt;
+                        &lt;i class=&quot;fas fa-plus me-2&quot;&gt;&lt;/i&gt;Daftar Lagi
+                    &lt;/a&gt;
+                    &lt;a href=&quot;/&quot; class=&quot;btn btn-outline-secondary&quot;&gt;
+                        &lt;i class=&quot;fas fa-home me-2&quot;&gt;&lt;/i&gt;Kembali ke Home
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Debug Data (bisa dihapus di production) --&gt;
+        @if(env('APP_DEBUG'))
+        &lt;div class=&quot;card mt-4&quot;&gt;
+            &lt;div class=&quot;card-header&quot;&gt;
+                &lt;h6 class=&quot;mb-0&quot;&gt;Data yang Disimpan (Debug)&lt;/h6&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;pre&gt;{{ json_encode($data, JSON_PRETTY_PRINT) }}&lt;/pre&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        @endif
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection
+</div></code></pre>
+</li>
+<li>
+<ol start="8">
+<li>Setelah melakukan langkah-langkah diatas, maka pada langkah terakhir yaitu menjalankan server laravel dengan perintah <code>php artisan serve</code>, masuk ke:<code>http://127.0.0.1:8000/multistep</code>
+setelah itu buka browser dan akan keluar tampilan seperti gambar dibawah ini:
+<img src="gambar/out-prak-3.png" alt="Output prak3"></li>
+</ol>
+<ul>
+<li>
+<p>Lakukan percobaan seperti dibawah untuk mengetest aturan dan definisi yang digunakan di kode program:</p>
+<ul>
+<li>Step 1: Isi informasi pribadi (nama, email, telepon, alamat)
+<img src="image.png" alt="alt text"></li>
+<li>Step 2: Isi informasi pendidikan (tingkat = pendidikan, institusi, tahun lulus, jurusan)
+<img src="image-1.png" alt="alt text"></li>
+<li>Step 3: Isi pengalaman kerja (pekerjaan saat ini, perusahaan, pengalaman, keahlian)
+<img src="image-2.png" alt="alt text"></li>
+<li>Summary: Lihat ringkasan data dan konfirmasi
+<img src="image-3.png" alt="alt text"></li>
+<li>Complete: Tampilan sukses<br>
+<img src="image-4.png" alt="alt text"></li>
+</ul>
+</li>
+<li>
+<p>Dapat dilihat bahwa input data dari step 1 hingga step 3 akan terlihat di step summary dimana kita masih bisa mengedit data dari step 1 hingga step 3, lalu saat di tahap complete, kita dapat melihat data yang sudah diinput ke sebuah format database, lalu kita juga dapat kembali ke home atau mencoba daftar kembali.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="3-hasil-dan-pembahasan">3. Hasil dan Pembahasan</h2>
+<ul>
+<li>
+<p>Apakah aplikasi berjalan sesuai harapan?</p>
+<ul>
+<li>Alhamdulillah hasil dari praktikum ini sesuai harapan meskipun menjumpai beberapa error yang disebabkan karena terlalu terburu-buru sehingga beberapa kali typo.</li>
+</ul>
+</li>
+<li>
+<p>Bagaimana cara kerja Form Submission di Laravel?</p>
+<ul>
+<li>Proses form submission dimulai ketika pengguna mengisi form dan menekan tombol submit. Browser akan mengirimkan request ke route yang ditentukan menggunakan method seperti POST, PUT/PATCH, atau DELETE. Middleware Laravel kemudian memproses request tersebut, termasuk verifikasi CSRF token untuk memastikan keamanan dari serangan Cross-Site Request Forgery. Setelah itu, controller menerima data, melakukan validasi sesuai rules yang telah ditentukan, dan jika valid, data akan disimpan ke database atau diproses lebih lanjut. Jika tidak valid, pengguna akan menerima pesan error yang relevan.</li>
+</ul>
+</li>
+<li>
+<p>Bagaimana penerapan CSRF di Laravel?</p>
+<ul>
+<li>Laravel secara otomatis menyertakan proteksi CSRF pada setiap form menggunakan @csrf. Token ini memastikan bahwa setiap permintaan form berasal dari sumber yang sah (bukan dari situs lain yang mencoba melakukan serangan). Jika token tidak cocok, Laravel akan menolak request tersebut.</li>
+</ul>
+</li>
+<li>
+<p>Bagaimana penerapan Validasi Data di Laravel?</p>
+<ul>
+<li>Validasi data dilakukan menggunakan method $request-&gt;validate() di dalam controller. Berbagai aturan seperti required, email, max, unique, dan confirmed diterapkan agar data yang diterima sesuai dengan ketentuan tabel database. Laravel juga memungkinkan penggunaan validasi kustom dan pesan error khusus untuk memperjelas instruksi kepada pengguna.Contohnya:</li>
+</ul>
+<pre class="hljs"><code><div>$request-&gt;validate([
+    'name' =&gt; 'required|string|max:100',
+    'email' =&gt; 'required|email|unique:users,email',
+    'password' =&gt; 'required|confirmed|min:8'
+]);
+
+</div></code></pre>
+</li>
+<li>
+<p>Bagaimana implementasi Multi-Step Form?</p>
+<ul>
+<li>Pada praktikum terakhir, form dibagi menjadi beberapa tahap dengan bantuan Session untuk menyimpan data sementara. Hal ini memungkinkan pengguna melanjutkan pengisian tanpa kehilangan data dari langkah sebelumnya. Sistem juga dilengkapi dengan progress bar dan tombol navigasi antar langkah agar pengalaman pengguna lebih terarah dan tidak membingungkan.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-kesimpulan">4. Kesimpulan</h2>
+<ul>
+<li>Kesimpulan dari praktikum ini adalah bahwa framework Laravel sangat baik untuk menangani proses form submission dengan aman, efisien, dan terstruktur. Melalui penggunaan berbagai HTTP methods seperti POST, PUT/PATCH, dan DELETE, proses pengiriman data dapat dilakukan dengan cara yang sesuai dengan kebutuhan aplikasi. Laravel juga memiliki sistem CSRF yaitu protection bawaan yang melindungi aplikasi dari serangan Cross-Site Request Forgery dengan memastikan setiap permintaan berasal dari sumber yang sah. Selain itu, fitur validasi data di Laravel membantu memastikan bahwa input pengguna sesuai dengan aturan dan ketentuan yang berlaku, baik dari sisi format, tipe data, maupun kesesuaian dengan tabel di database. Praktikum ini juga menunjukkan bagaimana validasi kustom dan pesan error spesifik dapat meningkatkan kejelasan komunikasi dengan pengguna. Implementasi multi-step form menegaskan fleksibilitas Laravel dalam mengelola data yang dikumpulkan secara bertahap menggunakan session, sehingga proses input menjadi lebih teratur dan tidak membingungkan. Secara keseluruhan, praktikum ini berhasil memperlihatkan bagaimana Laravel dapat digunakan untuk membangun sistem form yang aman, interaktif, dan user-friendly, sekaligus menjaga kualitas serta keamanan data yang diproses.</li>
+</ul>
+<hr>
+<h2 id="5-referensi">5. Referensi</h2>
+<ul>
+<li>https://medium.com/dotlocal/belajar-laravel-chapter-13-tutorial-csrf-protection-8ce2f82c4ce</li>
+<li>https://hackmd.io/@mohdrzu/HJWzYp7Reg</li>
+<li>https://buildwithangga.com/tips/belajar-validasi-laravel-dan-50-contoh-validasi-pada-projek-nyata</li>
+</ul>
+
+</body>
+</html>
